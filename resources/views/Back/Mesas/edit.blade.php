@@ -32,23 +32,6 @@
        <label for="Titulo">Desccripcion</label>
        <input type="text" name="Descripcion" required value="{{$mesa->Descripcion}}" class="form-control">
        </div>
-
-       <div class="input-field col s6">
-          @if($mesa->Estado == 1)
-    <select name="Estado">
-      <option value="" disabled selected>Elige el estado</option>
-      <option value="0">Desactivar</option>
-      <option value="1" selected>Activar</option>
-    </select>
-      @else
-    <select name="Estado">
-      <option value="" disabled selected>Elige el estado</option>
-      <option value="0" selected>Desactivar</option>
-      <option value="1">Activar</option>
-    </select>
-    @endif
-    <label>Estado</label>
-  </div>
      </div>
   <button class="btn blue" type="submit">
 	 Guardar

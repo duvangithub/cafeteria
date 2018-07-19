@@ -20,7 +20,6 @@
           <tr>
               <th>ID</th>
               <th>Descripcion</th>
-              <th>Estado</th>
                <th>Opciones</th>
           </tr>
         </thead>
@@ -29,11 +28,6 @@
           <tr>
             <td><?php echo e($m->idMesas); ?></td>
             <td><?php echo e($m->Descripcion); ?></td>
-            <?php if($m->Estado==0): ?>
-            <td>Desactivado</td>
-            <?php else: ?>
-            <td>Activo</td>
-            <?php endif; ?>
             <td>
             <a href="<?php echo e(URL::action('BMesasController@edit',$m->idMesas)); ?>" class="waves-effect waves-light btn blue"><i class="material-icons right">edit</i>Editar
             </a>

@@ -3,20 +3,24 @@
 namespace cafeteria;
 
 use Illuminate\Database\Eloquent\Model;
-
-class Mesas extends Model
+use Carbon\Carbon;
+class Categorias extends Model
 {
-    protected $table='mesas';
+    protected $table='categorias';
 
-    protected $primaryKey='idMesas';
+    protected $primaryKey='idCategorias';
 
     public $timestamps=false;
 
     protected $fillable = [
     	'Descripcion',
+    	'Estado',
+    	'Imagen',
     	'Eliminar'
     ];
 
-    protected $guarded = [
+    protected $guarded=[
     ];
+
+
 }

@@ -21,7 +21,6 @@
           <tr>
               <th>ID</th>
               <th>Descripcion</th>
-              <th>Estado</th>
                <th>Opciones</th>
           </tr>
         </thead>
@@ -30,11 +29,6 @@
           <tr>
             <td>{{$m->idMesas}}</td>
             <td>{{$m->Descripcion}}</td>
-            @if ($m->Estado==0)
-            <td>Desactivado</td>
-            @else
-            <td>Activo</td>
-            @endif
             <td>
             <a href="{{URL::action('BMesasController@edit',$m->idMesas)}}" class="waves-effect waves-light btn blue"><i class="material-icons right">edit</i>Editar
             </a>

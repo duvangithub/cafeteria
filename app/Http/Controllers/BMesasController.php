@@ -7,7 +7,7 @@ use cafeteria\Http\Requests;
 
 use cafeteria\Mesas;
 use Illuminate\Support\Facades\Redirect;
-use cafeteria\Http\Request\MesasRequest;
+
 use DB;
 
 class BMesasController extends Controller
@@ -20,10 +20,8 @@ class BMesasController extends Controller
     	if($request){
     		$query=trim($request->get('SearchText'));
     		$mesas=DB::table('mesas as m')
-    		->select('m.idMesas','m.Descripcion','m.Estado','m.Eliminar')
+    		->select('m.idMesas','m.Descripcion','m.Eliminar')
     		->where('m.Descripcion','LIKE','%'.$query.'%')
-    		->where('m.Eliminar','=','1')
-    		->Orwhere('m.Estado','LIKE','%'.$query.'%')
     		->where('m.Eliminar','=','1')
     		->orderBy('idMesas', 'DESC')
     		->paginate(4);
@@ -37,13 +35,12 @@ class BMesasController extends Controller
 
     }
 
-    public function store(MesasRequest $request){
+    public function store(Request $request){
     	$mesa= new Mesas;
     	$mesa->Descripcion=$request->get('Descripcion');
-    	$mesa->Estado='1';
     	$mesa->Eliminar='1';
     	$mesa->save();
-    	return Redirect::to('Back/Mesas');
+    	return Redirect::to('Back/Mesas')->with('status','Your Job details saved successfully');
     	
     }
 
@@ -61,8 +58,6 @@ class BMesasController extends Controller
 
     	$mesa=Mesas::findOrFail($id);
     	$mesa->Descripcion=$request->get('Descripcion');
-    	$mesa->Estado=$request->get('Estado');
-    	$mesa->Eliminar='1';
     	$mesa->update();
     	return Redirect::to("Back/Mesas");
     	

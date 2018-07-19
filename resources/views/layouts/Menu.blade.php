@@ -35,7 +35,8 @@
         <li><div class="divider"></div></li>
         <li><a class="subheader">Menu</a></li>
         <li><a class="waves-effect waves-teal" href="/Back/Mesas">Mesas <i class="material-icons right">chevron_right</i></a></li>
-        <li><a class="waves-effect waves-teal" href="/Back/Mesas">Categorias<i class="material-icons right">chevron_right</i></a></li>   
+        <li><a class="waves-effect waves-teal" href="/Back/Categorias">Categorias<i class="material-icons right">chevron_right</i>
+         <li><a class="waves-effect waves-teal" href="/Back/Productos">Productos<i class="material-icons right">chevron_right</i></a></li>   
 
         <li class="no-padding">
         <ul class="collapsible collapsible-accordion">

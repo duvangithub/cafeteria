@@ -43,6 +43,16 @@ return [
 
     'disks' => [
 
+        'ImgP' => [
+            'driver' => 'local',
+            'root' => public_path('Imagenes/Productos'),
+        ],
+
+         'ImgC' => [
+            'driver' => 'local',
+            'root' => public_path('Imagenes/Categorias'),
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

@@ -4,7 +4,7 @@ namespace cafeteria\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MesasRequest extends FormRequest
+class CategoriasRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,9 @@ class MesasRequest extends FormRequest
     {
         return [
             'Descripcion'=>'requiered|max:45',
-            'Eliminar'=>'requiered',
+            'Estado'=>'requiered',
+            'Imagen'=>'requiered|image',
+            'Eliminar'=>'requiered'
         ];
     }
 }

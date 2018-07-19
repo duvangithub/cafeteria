@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('Back/Mesas', 'BMesasController');
+Route::resource('Back/Categorias', 'BCategoriasController');
+Route::resource('Back/Productos', 'ProductosController');
+Route::resource('Back/Orden', 'BOrdenController');
+
