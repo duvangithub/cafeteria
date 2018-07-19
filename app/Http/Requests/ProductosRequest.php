@@ -3,6 +3,9 @@
 namespace cafeteria\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Validator;
+
+
 
 class ProductosRequest extends FormRequest
 {
@@ -24,13 +27,13 @@ class ProductosRequest extends FormRequest
     public function rules()
     {
         return [
-            'Descripcion'=>'requiered|string|max:45',
-            'Imagen'=>'requiered|image',
-            'Precio'=>'requiered|number',
-            'Stock'=>'requiered|numeric',
-            'Estado'=>'requiered',
-            'idCategorias'=>'requiered',
-            'Eliminar'=>'requiered'
+            'Descripcion'=>'required|string|max:45',
+            'Imagen'=>'required|image',
+            'Precio'=>'required|number',
+            'Stock'=>'required|numeric',
+            'Estado'=>'required',
+            'idCategorias'=>'required',
+            'Eliminar'=>'required'
         ];
     }
 }

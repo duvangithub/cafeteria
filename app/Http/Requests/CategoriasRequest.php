@@ -24,10 +24,10 @@ class CategoriasRequest extends FormRequest
     public function rules()
     {
         return [
-            'Descripcion'=>'requiered|max:45',
-            'Estado'=>'requiered',
-            'Imagen'=>'requiered|image',
-            'Eliminar'=>'requiered'
+            'Descripcion'=>'required|max:45',
+            'Estado'=>'required',
+            'Imagen'=>'required|image',
+            'Eliminar'=>'required'
         ];
     }
 }

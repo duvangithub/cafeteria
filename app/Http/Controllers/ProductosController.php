@@ -12,6 +12,8 @@ use cafeteria\Http\Requests\ProductosRequest;
 use Storage;
 use DB;
 
+
+
 class ProductosController extends Controller
 {
      public function __construct(){

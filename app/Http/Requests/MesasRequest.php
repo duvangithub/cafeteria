@@ -24,8 +24,8 @@ class MesasRequest extends FormRequest
     public function rules()
     {
         return [
-            'Descripcion'=>'requiered|max:45',
-            'Eliminar'=>'requiered',
+            'Descripcion'=>'required|max:45',
+            'Eliminar'=>'required',
         ];
     }
 }

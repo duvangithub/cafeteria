@@ -47,7 +47,7 @@
      <div class="row">
         <div class="input-field col s12">
            <i class="material-icons prefix">apps</i>
-    <select name="idCategorias">
+    <select name="idCategorias" required>
        <option value="" disabled selected>Elige tu categoria</option>
       @foreach($categorias as $cate)
       <option value="{{$cate->idCategorias}}">{{$cate->Descripcion}}</option>
@@ -61,7 +61,7 @@
       <div class="btn">
         <span>Imagen</span>
         
-        <input type="file" name="Imagen">
+        <input type="file" name="Imagen" required>
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" name="Imagen">
