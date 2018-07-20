@@ -9,7 +9,7 @@
 <div class="row">
 	<h3>Nuevas ordenes</h3>
 			@if(count($errors)>0)
-			<div class="alert alert-danger">
+			<div>
 				<ul>
 					@foreach ($errors->all() as $error)
 					<li>{{$error}}</li>
@@ -48,7 +48,7 @@
 	 Guardar
     <i class="material-icons right">send</i>
 	</button>
-     <a class="waves-effect waves-light btn red"><i class="material-icons right">clear</i>Cancelar</a>
+     <a class="waves-effect waves-light btn red" href="/Back/Orden"><i class="material-icons right">clear</i>Cancelar</a>
   </div>
   </div>
    </div>

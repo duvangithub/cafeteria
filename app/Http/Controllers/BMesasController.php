@@ -4,7 +4,7 @@ namespace cafeteria\Http\Controllers;
 
 use Illuminate\Http\Request;
 use cafeteria\Http\Requests;
-
+use cafeteria\Http\Requests\ProductosRequest;
 use cafeteria\Mesas;
 use Illuminate\Support\Facades\Redirect;
 

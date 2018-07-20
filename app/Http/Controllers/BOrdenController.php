@@ -7,6 +7,7 @@ use cafeteria\Http\Requests;
 
 use cafeteria\Orden;
 use Illuminate\Support\Facades\Redirect;
+use cafeteria\Http\Requests\OrdenRequest;
 
 use DB;
 

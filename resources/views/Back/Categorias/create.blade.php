@@ -36,7 +36,7 @@
       <div class="btn">
         <span>Imagen</span>
         
-        <input type="file" name="Imagen">
+        <input type="file" name="Imagen" required>
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" name="Imagen">
@@ -46,7 +46,7 @@
 	 Guardar
     <i class="material-icons right">send</i>
 	</button>
-     <a class="waves-effect waves-light btn red"><i class="material-icons right">clear</i>Cancelar</a>
+     <a class="waves-effect waves-light btn red" href="/Back/Categorias"><i class="material-icons right">clear</i>Cancelar</a>
   </div>
   </div>
    </div>
