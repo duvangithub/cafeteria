@@ -8,11 +8,9 @@ use cafeteria\Http\Requests;
 use cafeteria\Productos;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
-use cafeteria\Http\Requests\ProductosRequest;
+
 use Storage;
 use DB;
-
-
 
 class ProductosController extends Controller
 {
@@ -48,7 +46,7 @@ class ProductosController extends Controller
     	return view("Back.Productos.create",["categorias"=>$categorias]);
 
     }
-    public function store(ProductosRequest $request){
+    public function store(Request $request){
     	$producto = new Productos;
     	$producto->Descripcion=$request->get('Descripcion');
     	$img = $request->file('Imagen');
@@ -78,7 +76,7 @@ class ProductosController extends Controller
     }
 
 
-     public function update(ProductosRequest $request, $id){
+     public function update(Request $request, $id){
 
      	$producto=Productos::findOrFail($id);
     	$producto->Descripcion=$request->get('Descripcion');

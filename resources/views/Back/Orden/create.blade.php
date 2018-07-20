@@ -35,10 +35,10 @@
      <div class="row">
         <div class="input-field col s12">
            <i class="material-icons prefix">apps</i>
-    <select name="idMesas">
+    <select name="idMesas" required>
        <option value="" disabled selected required>Elige tu mesa</option>
       @foreach($mesas as $m)
-      <option value="{{$m->idMesas}}">{{$m->Descripcion}}</option>
+      <option value="{{$m->idMesas}}" required>{{$m->Descripcion}}</option>
       @endforeach
     </select>
     <label>Mesas</label>
