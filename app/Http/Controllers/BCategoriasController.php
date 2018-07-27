@@ -37,6 +37,7 @@ class BCategoriasController extends Controller
     	}
 
     }
+
      public function create(){
     	
     	return view("Back.Categorias.create");

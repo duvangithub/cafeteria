@@ -24,9 +24,11 @@ class OrdenRequest extends FormRequest
     public function rules()
     {
         return [
-            'Fecha'=>'required',
             'idMesas'=>'required',
-            'Nombre'=>'required|string'
+            'Nombre'=>'required|string',
+            'Orden'=> 'required',
+            'idProductos'=> 'required'
+
         ];
     }
 }

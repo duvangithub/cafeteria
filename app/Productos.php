@@ -20,7 +20,8 @@ class Productos extends Model
     	'Stock',
     	'Estado',
     	'idCategorias',
-    	'Eliminar'
+    	'Eliminar',
+        'idTamaños'
     ];
 
     protected $guarded=[

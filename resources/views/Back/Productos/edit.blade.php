@@ -37,7 +37,7 @@
        <label for="Precio">Precio</label>
        <input type="text" name="Precio" required value="{{$producto->Precio}}" class="form-control">
       </div>
-       <div class="input-field col 6">
+       <div class="input-field col s6">
         <i class="material-icons prefix">storage</i>
        <label for="Stock">Stock</label>
        <input type="text" name="Stock" required value="{{$producto->Stock}}" class="form-control">
@@ -74,6 +74,20 @@
       @endforeach
     </select>
     <label>Categoria</label>
+  </div>
+   <div class="input-field col s12">
+    <i class="material-icons prefix">apps</i>
+    <select name="idTamaños">
+      <option value="" disabled selected>Elige el tamaño</option>
+      @foreach ($tamanio as $t)
+      @if($t->idTamaños==$producto->idTamaños)
+      <option value="{{$t->idTamaños}}"selected>{{$t->Tamaño}}</option>
+     @else
+      <option value="{{$t->idTamaños}}">{{$t->Tamaño}}</option>
+      @endif
+      @endforeach
+    </select>
+    <label>Tamaño</label>
   </div>
     <div class="input-field col s12">
         <i class="material-icons prefix">crop_original</i>

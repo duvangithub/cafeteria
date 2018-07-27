@@ -20,9 +20,12 @@
         <thead>
           <tr>
               <th>ID</th>
+              <th>Orden</th>
               <th>Nombre</th>
               <th>Fecha</th>
               <th>Mesa</th>
+              <th>Estado</th>
+              <th>Total</th>
               <th>Opciones</th>
           </tr>
         </thead>
@@ -30,14 +33,19 @@
         	 @foreach($ordenes as $o)
           <tr>
             <td>{{$o->idOrden}}</td>
+            <td>{{$o->Orden}}</td>
             <td>{{$o->Nombre}}</td>
             <td>{{$o->Fecha}}</td>
             <td>{{$o->mesa}}</td>
+            @if($o->Estado==0)
+            <td>Desactivado</td>
+            @elseif($o->Estado==1)
+            <td>Activado</td>
+            @endif
+            <td>{{$o->total}}</td>
             <td>
-            <a href="{{URL::action('BOrdenController@edit',$o->idOrden)}}" class="waves-effect waves-light btn blue"><i class="material-icons right">edit</i>Editar
-            </a>
-             <a href="#modal-delete-{{$o->idOrden}}" data-toggle="modal" class="waves-effect waves-light btn modal-trigger red"><i class="material-icons right">delete</i>Eliminar
-            </a>
+            <a href="{{URL::action('BOrdenController@show',$o->idOrden)}}" class="waves-effect waves-light btn blue"><i class="material-icons">remove_red_eye</i></a>
+             <a href="#modal-delete-{{$o->idOrden}}" data-toggle="modal" class="waves-effect waves-light btn modal-trigger red"><i class="material-icons">delete</i></a>
             </td>
           </tr>
           	@include('Back.Orden.modal')

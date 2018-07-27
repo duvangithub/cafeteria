@@ -45,7 +45,7 @@
       </div>
      </div>
      <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s6">
            <i class="material-icons prefix">apps</i>
     <select name="idCategorias" required>
        <option value="" disabled selected>Elige tu categoria</option>
@@ -55,7 +55,21 @@
     </select>
     <label>Categorias</label>
   </div>
+
+    <div class="input-field col s6">
+           <i class="material-icons prefix">apps</i>
+    <select name="idTamaños" required>
+       <option value="" disabled selected>Elige el tamaño</option>
+      @foreach($tamanio as $t)
+      <option value="{{$t->idTamaños}}">{{$t->Tamaño}}</option>
+      @endforeach
+    </select>
+    <label>Tamaños</label>
+  </div>
      </div>
+
+    
+     
     
       <div class="file-field input-field s12">
       <div class="btn">

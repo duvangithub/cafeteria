@@ -21,6 +21,7 @@
           <tr>
               <th>ID</th>
               <th>Descripcion</th>
+              <th>Tamaño</th>
               <th>Precio</th>
               <th>Stock</th>
               <th>Categoria</th>
@@ -34,6 +35,7 @@
           <tr>
             <td>{{$p->idProductos}}</td>
             <td>{{$p->Descripcion}}</td>
+            <td>{{$p->tamanio}}</td>
             <td>{{$p->Precio}}</td>
             <td>{{$p->Stock}}</td>
             <td>{{$p->cate}}</td>
@@ -44,10 +46,8 @@
             <td>Activo</td>
             @endif
             <td>
-            <a href="{{URL::action('ProductosController@edit',$p->idProductos)}}" class="waves-effect waves-light btn blue"><i class="material-icons right">edit</i>Editar
-            </a>
-             <a href="#modal-delete-{{$p->idProductos}}" data-toggle="modal" class="waves-effect waves-light btn modal-trigger red"><i class="material-icons right">delete</i>Eliminar
-            </a>
+            <a href="{{URL::action('ProductosController@edit',$p->idProductos)}}" class="waves-effect waves-light btn blue"><i class="material-icons">edit</i></a>
+             <a href="#modal-delete-{{$p->idProductos}}" data-toggle="modal" class="waves-effect waves-light btn modal-trigger red"><i class="material-icons">delete</i></a>
             </td>
           </tr>
           	@include('Back.Productos.modal')

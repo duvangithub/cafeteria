@@ -24,13 +24,16 @@ class ProductosController extends Controller
     		$query=trim($request->get('SearchText'));
     		$productos=DB::table('productos as p')
     		->join('categorias as c','p.idCategorias','=','c.idCategorias')
-    		->select('p.idProductos','p.Descripcion','p.Imagen','p.Precio','p.Stock','p.Estado','p.Eliminar','c.Descripcion as cate')
+            ->join('tamaños as t','p.idTamaños','=','t.idTamaños')
+    		->select('p.idProductos','p.Descripcion','p.Imagen','p.Precio','p.Stock','p.Estado','p.Eliminar','c.Descripcion as cate','t.Tamaño as tamanio')
     		->where('p.Descripcion','LIKE','%'.$query.'%')
     		->where('p.Eliminar','=','1')
     		->Orwhere('p.Estado','LIKE','%'.$query.'%')
     		->where('p.Eliminar','=','1')
     		->Orwhere('c.Descripcion','LIKE','%'.$query.'%')
     		->where('p.Eliminar','=','1')
+            ->Orwhere('t.Tamaño','LIKE','%'.$query.'%')
+            ->where('p.Eliminar','=','1')
     		->orderBy('idProductos', 'DESC')
     		->paginate(5);
     		return view('Back.Productos.index',["productos"=>$productos,"SearchText"=>$query]);
@@ -38,12 +41,27 @@ class ProductosController extends Controller
     	}
 
     }
+
+    public function byCate($id){
+
+       return Productos::where('idCategorias', $id)
+       ->where('Eliminar','=','1')
+       ->get();
+
+    }
+
+    public function byPro($id){
+       return Productos::where('idProductos', $id)->get();
+    }
+
+
      public function create(){
     	
     	$categorias=DB::table('categorias')->get();
+        $tamanio=DB::table('tamaños')->get();
     	
 
-    	return view("Back.Productos.create",["categorias"=>$categorias]);
+    	return view("Back.Productos.create",["categorias"=>$categorias,"tamanio"=>$tamanio]);
 
     }
     public function store(Request $request){
@@ -58,6 +76,7 @@ class ProductosController extends Controller
     	$producto->Estado="1";
     	$producto->idCategorias=$request->get('idCategorias');
     	$producto->Eliminar='1';
+        $producto->idTamaños=$request->get('idTamaños');
     	$producto->save();
     	return Redirect::to('Back/Productos');
 
@@ -72,7 +91,8 @@ class ProductosController extends Controller
      public function edit($id){
     	$producto=Productos::findOrFail($id);
     	$categorias=DB::table('categorias')->get();
-    	return view(" Back.Productos.edit",["producto"=>$producto, 'categorias'=>$categorias]);
+         $tamanio=DB::table('tamaños')->get();
+    	return view(" Back.Productos.edit",["producto"=>$producto, "tamanio"=>$tamanio, 'categorias'=>$categorias]);
     }
 
 
@@ -86,6 +106,7 @@ class ProductosController extends Controller
     	$producto->Estado=$request->get('Estado');
     	$producto->idCategorias=$request->get('idCategorias');
     	$producto->Eliminar='1';
+        $producto->idTamaños=$request->get('idTamaños');
     	$producto->update();
     	return Redirect::to('Back/Productos');
     }

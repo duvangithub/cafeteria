@@ -3,7 +3,7 @@
 	{{Form::open(array('action'=>array('BOrdenController@destroy',$o->idOrden),'method'=>'delete'))}}
 
 	 <div class="modal-content">
-      <h4>Deseas eliminar la orden {{$o->idOrden}}</h4>
+      <h4>Deseas cancelar la orden {{$o->Orden}}</h4>
       <p>Nombre:{{$o->Nombre}}</p>
       <p>Fecha:{{$o->Fecha}}</p>
       <p>Mesa:{{$o->mesa}}</p>

@@ -15,7 +15,9 @@ class Orden extends Model
     protected $fillable = [
     	'Fecha',
     	'idMesas',
-    	'Nombre'
+    	'Nombre',
+        'Estado',
+        'Orden'
     ];
 
     protected $guarded=[
