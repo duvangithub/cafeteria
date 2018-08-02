@@ -26,6 +26,7 @@ class CajaController extends Controller
          $this->middleware('auth');
 
     }
+    // Index
 
     public function index(Request $request){
 
