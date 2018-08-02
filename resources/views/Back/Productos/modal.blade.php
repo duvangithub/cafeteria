@@ -4,6 +4,7 @@
 
 	 <div class="modal-content">
       <h4>Deseas eliminar {{$p->Descripcion}}</h4>
+      <h5>Tamaño {{$p->NumProducto}}</h5>
       <h5>Tamaño {{$p->tamanio}}</h5>
        <img src="{{asset('Imagenes/Productos/'.$p->Imagen)}}" height="200px" width="200px" >
     </div>

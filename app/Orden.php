@@ -17,7 +17,9 @@ class Orden extends Model
     	'idMesas',
     	'Nombre',
         'Estado',
-        'Orden'
+        'Orden',
+        'Eliminar',
+        'Usuario'
     ];
 
     protected $guarded=[

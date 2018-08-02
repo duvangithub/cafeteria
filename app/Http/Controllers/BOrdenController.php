@@ -11,6 +11,9 @@ use cafeteria\Http\Requests\OrdenRequest;
 use cafeteria\Orden;
 use cafeteria\DetalleOrden;
 use cafeteria\Categorias;
+use cafeteria\Pago;
+use Illuminate\Support\Facades\Auth;
+// use cafeteria\Categorias;
 use DB;
 use Carbon\Carbon;
 use Response;
@@ -19,6 +22,8 @@ use Illuminate\Support\Collection;
 class BOrdenController extends Controller
 {
      public function __construct(){
+
+         $this->middleware('auth');
 
     }
 
@@ -29,15 +34,18 @@ class BOrdenController extends Controller
     		$ordenes=DB::table('orden as o')
             ->join('mesas as m','o.idMesas','=','m.idMesas')
             ->join('detalleorden as do','o.idOrden','=','do.idOrden')
-    		->select('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion as mesa', DB::raw('sum(do.Costo) as total'))
+    		->select('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion as mesa','o.Usuario', DB::raw('sum(do.Costo) as total'))
     		->where('o.Nombre','LIKE','%'.$query.'%')
-            ->where('o.Estado','=','1')
+            ->where('o.Eliminar','=','1')
+            ->where('o.idMesas','!=','6')
     		->Orwhere('m.Descripcion','LIKE','%'.$query.'%')
-            ->where('o.Estado','=','1')
+            ->where('o.Eliminar','=','1')
+            ->where('o.idMesas','!=','6')
     		->Orwhere('o.Orden','LIKE','%'.$query.'%')
-            ->where('o.Estado','=','1')
+            ->where('o.Eliminar','=','1')
+            ->where('o.idMesas','!=','6')
     		->orderBy('idOrden', 'DESC')
-            ->groupBy('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion')
+            ->groupBy('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion','o.Usuario')
     		->paginate(7);
     		return view('Back.Orden.index',["ordenes"=>$ordenes,"SearchText"=>$query]);
             
@@ -62,14 +70,14 @@ class BOrdenController extends Controller
             $orden->Fecha=$mytime->toDateTimeString();
             $orden->Nombre=$request->get('Nombre');
             $orden->Estado='1';
+            $orden->Usuario=Auth::user()->name;
+            $orden->Eliminar='1';
             $orden->Orden=$request->get('Orden');
             $orden->save();
 
             $idProductos = $request->get('idProductos');
             $Cantidad = $request->get('Cantidad');
             $Costo = $request->get('Costo');
-            $Descuento = $request->get('Descuento');
-
             $cont = 0;
 
             while ($cont < count($idProductos)) {
@@ -78,9 +86,7 @@ class BOrdenController extends Controller
                 $detalle->idProductos=$idProductos[$cont];
                 $detalle->Cantidad=$Cantidad[$cont];
                 $detalle->Costo=$Costo[$cont];
-                $detalle->Descuento=$Descuento[$cont];
                 $detalle->save();
-
                 $cont=$cont+1;
             }
             DB::commit();
@@ -96,17 +102,22 @@ class BOrdenController extends Controller
         $orden=DB::table('orden as o')
             ->join('mesas as m','o.idMesas','=','m.idMesas')
             ->join('detalleorden as do','o.idOrden','=','do.idOrden')
-            ->select('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion as mesa', DB::raw('sum(do.Costo) as total'))
+            ->select('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion as mesa','o.Usuario', DB::raw('sum(do.Costo) as total'))
             ->where('o.idOrden','=',$id)
-            ->groupBy('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion')
+            ->groupBy('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion','o.Usuario')
             ->first();
 
         $detalle=DB::table('detalleorden as d')
                 ->join('productos as p', 'd.idProductos','=','p.idProductos')
-                ->select('p.Descripcion as producto','p.Precio as precio','d.Cantidad','d.Costo','d.Descuento')
+                ->select('p.Descripcion as producto','p.Precio as precio','d.Cantidad','d.Costo')
                 ->where('d.idOrden','=',$id)->get();
 
-    	return view("Back.Orden.show",["orden"=>$orden, "detalle"=>$detalle]);
+        $venta=DB::table('venta as v')
+                ->join('pago as pa', 'v.idVenta','=','pa.idVenta')
+                ->select('v.Total as total','pa.Pagado as pagado','pa.Cambio as cambio','pa.Estado as estado','pa.Tarjeta as tipo')
+                ->where('v.idOrden','=',$id)->get();
+
+        return view("Back.Orden.show",["orden"=>$orden, "detalle"=>$detalle,"venta"=>$venta]);
 
     }
 
@@ -114,16 +125,12 @@ class BOrdenController extends Controller
 
      public function destroy($id){
     	
-    	$orden = Orden::find($id);
-        
-        if (is_null ($orden))
-        {
-            App::abort(404);
-        }
-        
-        $orden->delete();
+    	$orden=Orden::findOrFail($id);
+        $orden->Eliminar='0';
+        $orden->Estado='0';
+        $orden->update();
+        return Redirect::to("Back/Mesas");
 
-        return Redirect::to('Back/Orden');
 
     }
 }

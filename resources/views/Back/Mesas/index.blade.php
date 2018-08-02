@@ -1,6 +1,6 @@
 @extends ('layouts.Menu')
 @section ('contenido')
-
+@if(Auth::user()->tipo==1)
 <div class="row">
    <div class="col s12 ">
    	<div class="row">
@@ -47,5 +47,8 @@
     </div>
      {{$mesas->render()}}
     </div>
+    @else
+ @include('/Error/error')
+@endif
 
 @endsection

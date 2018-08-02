@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/auth/login');
 });
 
 Route::resource('Back/Mesas', 'BMesasController');
@@ -22,8 +22,11 @@ Route::resource('Back/Tamaños', 'TamañosController');
 
 
 Route::resource('Back/Orden', 'BOrdenController');
+Route::resource('Back/Compra','OrdenVentaController');
+Route::resource('Back/PuntoVenta','CajaController');
+Route::resource('Back/Venta','VentasController');
+Route::resource('Back/Usuarios','UsuarioController');
 
+Route::auth();
 
-
-
-// Route::resource('Back/ProductosOrden', 'ProductosOrdenController');
+Route::get('/home', 'HomeController@index')->name('home');

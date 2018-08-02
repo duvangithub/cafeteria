@@ -83,31 +83,23 @@
     </div>
     <div class="row">
        <div class="input-field col l4 m4 s12 proID">
-         <label for="">ID</label>
       </div>
        <div class="input-field col l4 m4 s12 proNombre">
-        <label for="">Producto</label>
       </div>
        <div class="input-field col l4 m4 s12 precio">
-        <label for="">Precio</label>
       </div>
     </div>
      <div class="row">
-       <div class="input-field col l3 m3 s12 cantidad">
+       <div class="input-field col l4 m4 s12 cantidad">
         <i class="material-icons prefix">add_circle</i>
         <input id="Cantidad" name="pCantidad" type="number" class="validate pCantidad" onblur="multiplica(this.form)">
         <label for="Cantidad">Cantidad</label>
       </div>
-      <div class="input-field col l3 m3 s12">
+      <div class="input-field col l4 m4 s12">
         <label for="Costo">Costo</label>
         <input  id="Costo" name="pCosto" type="number" class="validate pCosto">
       </div>
-      <div class="input-field col l3 m3 s12 cantidad">
-        <i class="material-icons prefix">add_circle</i>
-        <input id="pDescuento" name="pDescuento" type="number" class="validate pDescuento">
-        <label for="Descuento">Descuento</label>
-      </div>
-      <div class="col l3 m3 s12">
+      <div class="col l4 m4 s12">
           <button class="btn waves-effect waves-light green" type="button" id="bt_add">Agregar
             <i class="material-icons right">add</i>
           </button>
@@ -116,21 +108,17 @@
      <div class="row">
         <!-- Tabla -->
         <div class="col l12 m12 s12">
-          <table class="responsive-table striped" id="detalles">
+          <table class="striped" id="detalles">
         <thead>
           <tr>
               <th>Opciones</th>
               <th>Producto</th>
               <th>Cantidad</th>
-              <th>Costo</th>
-              <th>Descuento</th>
               <th>Subtotal</th>
           </tr>
         </thead>
-        <tfoot>
-          <th>Total</th>
-          <th></th>
-          <th></th>
+        <tfoot class="">
+          <th><h4>Total</h4></th>
           <th></th>
           <th></th>
           <th><h4 id="total">$/</h4></th>
@@ -149,6 +137,7 @@
   </div>
   </div>
    </div>
+
     </div>
   </div>
 </div>
@@ -172,14 +161,12 @@
     precio=$(".pPrecio").val();
     cantidad=$(".pCantidad").val();
     costo=$(".pCosto").val();
-    descuento=$(".pDescuento").val();
-
     if(idProductos!=0 && cantidad!=""  && cantidad > 0 && producto!="" && costo!="" ){
 
       subtotal[cont]=(cantidad*precio);
       total=total+subtotal[cont];
 
-      var fila='<tr class="striped" id="fila'+cont+'"><td><button type="button" class="btn red" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idProductos[]" value="'+idProductos+'">'+producto+'</td><td><input type="number" name="Cantidad[]" value="'+cantidad+'"></td><td><input type="number" name="Costo[]" value="'+costo+'"></td><td><input type="number" name="Descuento[]" value="'+descuento+'"></td><td>'+subtotal[cont]+'</td></tr>';
+      var fila='<tr class="striped" id="fila'+cont+'"><td><button type="button" class="btn red" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idProductos[]" value="'+idProductos+'">'+producto+'</td><td><input type="hidden" name="Cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="hidden" name="Costo[]" value="'+costo+'">'+subtotal[cont]+'</td></tr>';
        cont++;
        limpiar();
        $('#total').html("$/ " + total);
@@ -197,7 +184,6 @@
 function limpiar(){
   $("#Cantidad").val("");
   $("#Costo").val("");
-  $("#pDescuento").val("");
   $("#pPrecio").val("");
 }
 

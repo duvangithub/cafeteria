@@ -1,6 +1,6 @@
 @extends ('layouts.Menu')
 @section ('contenido')
-
+@if(Auth::user()->tipo==1)
 <div class="row">
    <div class="col s12 ">
    	<div class="row">
@@ -27,10 +27,15 @@
   <div class="card-content">
    <div class="row">
     <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">confirmation_number</i>
+       <label for="NumProducto">Codigo del producto</label>
+      <input type="text" name="NumProducto" required value="{{$producto->NumProducto}}" class="form-control">
+      </div>
+      <div class="input-field col s6">
         <i class="material-icons prefix">edit</i>
        <label for="Descripcion">Desccripcion</label>
-       <input type="text" name="Descripcion" required value="{{$producto->Descripcion}}" class="form-control">
+      <input type="text" name="Descripcion" required value="{{$producto->Descripcion}}" class="form-control">
       </div>
        <div class="input-field col s6">
         <i class="material-icons prefix">attach_money</i>
@@ -109,4 +114,7 @@
     </div>
     </div>
 {!!Form::close()!!}
+@else
+ @include('/Error/error')
+@endif
 @endsection

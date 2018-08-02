@@ -29,11 +29,13 @@ class ProductosRequest extends FormRequest
         return [
             'Descripcion'=>'required|string|max:45',
             'Imagen'=>'required|image',
-            'Precio'=>'required|number',
+            'Precio'=>'required|numeric',
             'Stock'=>'required|numeric',
             'Estado'=>'required',
             'idCategorias'=>'required',
-            'Eliminar'=>'required'
+            'idTamaños'=>'required',
+            'Eliminar'=>'required',
+            'NumProducto'=>'required',
         ];
     }
 }

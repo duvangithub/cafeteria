@@ -26,6 +26,8 @@ class OrdenRequest extends FormRequest
         return [
             'idMesas'=>'required',
             'Nombre'=>'required|string',
+            'Costo'=>'required',
+            'Cantidad'=>'required',
             'Orden'=> 'required',
             'idProductos'=> 'required'
 

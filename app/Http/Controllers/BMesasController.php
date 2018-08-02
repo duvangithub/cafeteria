@@ -13,6 +13,7 @@ use DB;
 class BMesasController extends Controller
 {
     public function __construct(){
+         $this->middleware('auth');
 
     }
 
@@ -38,6 +39,7 @@ class BMesasController extends Controller
     public function store(Request $request){
     	$mesa= new Mesas;
     	$mesa->Descripcion=$request->get('Descripcion');
+        $mesa->Numero='0';
     	$mesa->Eliminar='1';
     	$mesa->save();
     	return Redirect::to('Back/Mesas')->with('status','Your Job details saved successfully');

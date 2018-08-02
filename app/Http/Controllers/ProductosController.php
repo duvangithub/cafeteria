@@ -14,9 +14,7 @@ use DB;
 
 class ProductosController extends Controller
 {
-     public function __construct(){
-
-    }
+    
 
       public function index(Request $request){
 
@@ -25,7 +23,7 @@ class ProductosController extends Controller
     		$productos=DB::table('productos as p')
     		->join('categorias as c','p.idCategorias','=','c.idCategorias')
             ->join('tamaños as t','p.idTamaños','=','t.idTamaños')
-    		->select('p.idProductos','p.Descripcion','p.Imagen','p.Precio','p.Stock','p.Estado','p.Eliminar','c.Descripcion as cate','t.Tamaño as tamanio')
+    		->select('p.idProductos','p.Descripcion','p.Imagen','p.Precio','p.Stock','p.Estado','p.Eliminar','p.NumProducto','c.Descripcion as cate','t.Tamaño as tamanio')
     		->where('p.Descripcion','LIKE','%'.$query.'%')
     		->where('p.Eliminar','=','1')
     		->Orwhere('p.Estado','LIKE','%'.$query.'%')
@@ -33,6 +31,8 @@ class ProductosController extends Controller
     		->Orwhere('c.Descripcion','LIKE','%'.$query.'%')
     		->where('p.Eliminar','=','1')
             ->Orwhere('t.Tamaño','LIKE','%'.$query.'%')
+            ->where('p.Eliminar','=','1')
+            ->Orwhere('p.NumProducto','LIKE','%'.$query.'%')
             ->where('p.Eliminar','=','1')
     		->orderBy('idProductos', 'DESC')
     		->paginate(5);
@@ -51,13 +51,16 @@ class ProductosController extends Controller
     }
 
     public function byPro($id){
-       return Productos::where('idProductos', $id)->get();
+       return Productos::where('idProductos', $id)
+       ->where('Eliminar','=','1')
+       ->get();
     }
-
 
      public function create(){
     	
-    	$categorias=DB::table('categorias')->get();
+    	$categorias=DB::table('categorias')
+        ->where('Eliminar','=','1')
+        ->get();
         $tamanio=DB::table('tamaños')->get();
     	
 
@@ -76,7 +79,9 @@ class ProductosController extends Controller
     	$producto->Estado="1";
     	$producto->idCategorias=$request->get('idCategorias');
     	$producto->Eliminar='1';
+        $producto->Numero='0';
         $producto->idTamaños=$request->get('idTamaños');
+        $producto->NumProducto=$request->get('NumProducto');
     	$producto->save();
     	return Redirect::to('Back/Productos');
 
@@ -107,6 +112,7 @@ class ProductosController extends Controller
     	$producto->idCategorias=$request->get('idCategorias');
     	$producto->Eliminar='1';
         $producto->idTamaños=$request->get('idTamaños');
+        $producto->NumProducto=$request->get('NumProducto');
     	$producto->update();
     	return Redirect::to('Back/Productos');
     }

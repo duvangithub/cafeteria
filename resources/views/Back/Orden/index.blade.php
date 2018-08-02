@@ -19,12 +19,13 @@
     <table class="striped responsive-table" >
         <thead>
           <tr>
-              <th>ID</th>
+             
               <th>Orden</th>
               <th>Nombre</th>
               <th>Fecha</th>
               <th>Mesa</th>
               <th>Estado</th>
+              <th>Mesero</th>
               <th>Total</th>
               <th>Opciones</th>
           </tr>
@@ -32,19 +33,28 @@
         <tbody>
         	 @foreach($ordenes as $o)
           <tr>
-            <td>{{$o->idOrden}}</td>
+            
             <td>{{$o->Orden}}</td>
             <td>{{$o->Nombre}}</td>
             <td>{{$o->Fecha}}</td>
             <td>{{$o->mesa}}</td>
             @if($o->Estado==0)
-            <td>Desactivado</td>
+            <td>Saldado</td>
             @elseif($o->Estado==1)
-            <td>Activado</td>
+            <td>Activo</td>
             @endif
+            <td>{{$o->Usuario}}</td>
             <td>{{$o->total}}</td>
             <td>
+             <?php
+             $id=$o->idOrden;
+             $total=$o->total;
+              ?>
             <a href="{{URL::action('BOrdenController@show',$o->idOrden)}}" class="waves-effect waves-light btn blue"><i class="material-icons">remove_red_eye</i></a>
+            @if($o->Estado==1)
+             <a href="/Back/Venta/create?ID=<?php echo $id;?>&TOTAL=<?php echo $total;?>" class="waves-effect waves-light btn green"><i class="material-icons">account_balance_wallet</i></a>
+            @elseif($o->Estado==0)
+            @endif
              <a href="#modal-delete-{{$o->idOrden}}" data-toggle="modal" class="waves-effect waves-light btn modal-trigger red"><i class="material-icons">delete</i></a>
             </td>
           </tr>

@@ -1,6 +1,6 @@
 @extends ('layouts.Menu')
 @section ('contenido')
-
+  @if(Auth::user()->tipo==1)
 <div class="row">
    <div class="col s12 ">
    	<div class="row">
@@ -16,10 +16,10 @@
      <div class="card darken-1">
      <div class="card-content">
 <div class="row">
-    <table class="striped responsive-table" >
+    <table class="striped responsive-table centered" >
         <thead>
           <tr>
-              <th>ID</th>
+              <th>Codigo</th>
               <th>Descripcion</th>
               <th>Tamaño</th>
               <th>Precio</th>
@@ -33,11 +33,15 @@
         <tbody>
         	 @foreach($productos as $p)
           <tr>
-            <td>{{$p->idProductos}}</td>
+            <td>{{$p->NumProducto}}</td>
             <td>{{$p->Descripcion}}</td>
             <td>{{$p->tamanio}}</td>
             <td>{{$p->Precio}}</td>
-            <td>{{$p->Stock}}</td>
+            @if($p->Stock <= 10)
+             <td bgcolor="#c62828 red darken-3">{{$p->Stock}}</td>
+            @else
+              <td>{{$p->Stock}}</td>
+            @endif
             <td>{{$p->cate}}</td>
             <td><img src="{{asset('Imagenes/productos/'.$p->Imagen)}}" alt="{{$p->Descripcion}}" height="100px" width="100px" class="responsive-img"></td>
             @if ($p->Estado==0)
@@ -61,5 +65,8 @@
     </div>
      {{$productos->render()}}
     </div>
+@else
+ @include('/Error/error')
+@endif
 
 @endsection

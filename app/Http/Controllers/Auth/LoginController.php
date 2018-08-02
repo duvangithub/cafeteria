@@ -4,6 +4,7 @@ namespace cafeteria\Http\Controllers\Auth;
 
 use cafeteria\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,19 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    
+    public function authenticated($request , $user){
+    if($user->tipo=='1'){
+       return Redirect::to('Back/Venta');
+    }elseif($user->tipo=='2'){
+        return Redirect::to('Back/Orden');
+    }elseif($user->tipo=='3'){
+        return Redirect::to('Back/PuntoVenta');
+    }
+}
+   
+
+    
 
     /**
      * Create a new controller instance.

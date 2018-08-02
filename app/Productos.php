@@ -21,7 +21,8 @@ class Productos extends Model
     	'Estado',
     	'idCategorias',
     	'Eliminar',
-        'idTamaños'
+        'idTamaños',
+        'NumProducto'
     ];
 
     protected $guarded=[
