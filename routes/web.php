@@ -22,9 +22,12 @@ Route::resource('Back/Tamaños', 'TamañosController');
 
 
 Route::resource('Back/Orden', 'BOrdenController');
+Route::resource('Back/Mesero', 'MeseroController');
 Route::resource('Back/Compra','OrdenVentaController');
 Route::resource('Back/PuntoVenta','CajaController');
 Route::resource('Back/Venta','VentasController');
+Route::resource('Back/Comanda','ComandaController');
+
 Route::resource('Back/Usuarios','UsuarioController');
 
 Route::auth();

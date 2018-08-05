@@ -41,6 +41,9 @@ class OrdenVentaController extends Controller
     		->Orwhere('o.Orden','LIKE','%'.$query.'%')
             ->where('o.Eliminar','=','1')
             ->where('o.idMesas','=','6')
+            ->Orwhere(DB::raw('DATE(o.Fecha)'),'LIKE','%'.$query.'%')
+            ->where('o.Eliminar','=','1')
+            ->where('o.idMesas','=','6')
     		->orderBy('idOrden', 'DESC')
             ->groupBy('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion','o.Usuario')
     		->paginate(7);
@@ -83,6 +86,7 @@ class OrdenVentaController extends Controller
                 $detalle->idProductos=$idProductos[$cont];
                 $detalle->Cantidad=$Cantidad[$cont];
                 $detalle->Costo=$Costo[$cont];
+                $detalle->Comanda='1';
                 $detalle->save();
                 $cont=$cont+1;
             }
@@ -140,7 +144,8 @@ class OrdenVentaController extends Controller
     	
     	$orden=Orden::findOrFail($id);
         $orden->Eliminar='0';
-        $orden->Estado='0';
+        $orden->Estado='2';
+        $orden->Comanda='0';
         $orden->update();
         return Redirect::to("Back/Compra");
 

@@ -1,6 +1,6 @@
 @extends ('layouts.Menu')
 @section ('contenido')
-
+@if(Auth::user()->tipo==1)
 <div class="row">
    <div class="col s12 ">
    	<div class="row">
@@ -51,6 +51,7 @@
              $total=$o->total;
               ?>
             <a href="{{URL::action('BOrdenController@show',$o->idOrden)}}" class="waves-effect waves-light btn blue"><i class="material-icons">remove_red_eye</i></a>
+             <a href="{{URL::action('ReciboController@show',$o->idOrden)}}" class="waves-effect waves-light btn"><i class="material-icons">remove_red_eye</i></a>
             @if($o->Estado==1)
              <a href="/Back/Venta/create?ID=<?php echo $id;?>&TOTAL=<?php echo $total;?>" class="waves-effect waves-light btn green"><i class="material-icons">account_balance_wallet</i></a>
             @elseif($o->Estado==0)
@@ -69,5 +70,8 @@
     </div>
      {{$ordenes->render()}}
     </div>
+    @else
+ @include('/Error/error')
+@endif
 
 @endsection

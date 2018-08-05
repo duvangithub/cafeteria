@@ -31,9 +31,11 @@ class LoginController extends Controller
     if($user->tipo=='1'){
        return Redirect::to('Back/Venta');
     }elseif($user->tipo=='2'){
-        return Redirect::to('Back/Orden');
+        return Redirect::to('Back/Mesero');
     }elseif($user->tipo=='3'){
         return Redirect::to('Back/PuntoVenta');
+    }elseif($user->tipo=='4'){
+        return Redirect::to('Back/Comanda');
     }
 }
    

@@ -31,7 +31,8 @@ function onSelectProjectChange(){
         $.get('/api/Back/Productos/'+producto+'/Productos', function (data2) {
         	var html = '<i class="material-icons prefix">attach_money</i>';
         	var html_nombre = '<i class="material-icons prefix">local_dining</i>';
-        	var html_id = '<i class="material-icons prefix">confirmation_number</i>';
+          var html_id = '<i class="material-icons prefix"></i>';
+        	var html_num = '<i class="material-icons prefix">confirmation_number</i>';
         	for(var i=0; i<data2.length; ++i)
 			html+='<input disabled name="Precio" value="'+data2[i].Precio+'" id="disabled" type="text" class="validate pPrecio">';
 
@@ -39,7 +40,12 @@ function onSelectProjectChange(){
 			html_nombre+='<input disabled  name="pProducto" value="'+data2[i].Descripcion+'" id="disabled" type="text" class="validate pProducto">';
 
 			for(var i=0; i<data2.length; ++i)
-			html_id+='<input disabled  name="pID" value="'+data2[i].idProductos+'" id="disabled" type="text" class="validate pID">';
+			html_id+='<input disabled  name="pID" value="'+data2[i].idProductos+'" id="disabled" type="hidden" class="validate pID">';
+
+      for(var i=0; i<data2.length; ++i)
+      html_num+='<input disabled  name="pNum" value="'+data2[i].NumProducto+'" id="disabled" type="text" class="validate pNum">';
+
+      
 
 
 		console.log(html_id)
@@ -47,6 +53,8 @@ function onSelectProjectChange(){
 		$('.precio').html(html);
 		$('.proNombre').html(html_nombre);
 		$('.proID').html(html_id);
+    $('.proNum').html(html_num);
+   
 
         });
 

@@ -29,9 +29,13 @@
   @elseif(Auth::user()->tipo==3)
   @include('/layouts/cajero')
 
+  @elseif(Auth::user()->tipo==4)
+  @include('/layouts/cocinero')
+
   @endif
  
 @stack('scripts')
+@stack('actualizar')
 <script type="text/javascript" src="{{asset('Back/Mate/js/menu.js')}}"></script>
 <script type="text/javascript" src="{{asset('Back/Mate/js/materialize.min.js')}}"></script>
 </body>

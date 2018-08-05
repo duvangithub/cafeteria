@@ -30,6 +30,7 @@
              </form>
         <li><div class="divider"></div></li>
         <li><a class="subheader">Menu</a></li>
+        <li><a class="waves-effect waves-teal" href="/Back/Comanda">Lista de comandas<i class="material-icons right">chevron_right</i></a></li> 
         <li><a class="waves-effect waves-teal" href="/Back/Compra">Punto de venta<i class="material-icons right">chevron_right</i></a></li>
         <li><a class="waves-effect waves-teal" href="/Back/Orden">Ordenes<i class="material-icons right">chevron_right</i></a></li> 
         <li><a class="waves-effect waves-teal" href="/Back/Mesas">Catalogo de mesas <i class="material-icons right">chevron_right</i></a></li>

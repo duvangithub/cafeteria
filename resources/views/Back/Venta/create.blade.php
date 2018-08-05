@@ -68,7 +68,7 @@
     <div class="col l12 m12 s12" id="guardar">
      <input name="_token" value="{{ csrf_token() }}" type="hidden">
      <button class="btn blue opera" type="submit">Guardar<i class="material-icons right">send</i></button>
-     <button class="btn red" type="reset">Cancelar<i class="material-icons right">clear</i></button>
+      <a class="waves-effect waves-light btn red" href="/Back/Venta"><i class="material-icons right">clear</i>Cancelar</a>
     </div>
   </div>
 </div>

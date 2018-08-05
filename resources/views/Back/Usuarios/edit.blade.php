@@ -69,6 +69,7 @@
       <option value="1" selected>Administrador</option>
       <option value="2">Mesero</option>
       <option value="3">Cajero</option>
+      <option value="4">Cocinero</option>
     </select>
       @elseif($usuario->tipo == 2)
     <select name="tipo">
@@ -76,6 +77,7 @@
       <option value="1">Administrador</option>
       <option value="2" selected>Mesero</option>
       <option value="3">Cajero</option>
+      <option value="4">Cocinero</option>
     </select>
      @elseif($usuario->tipo == 3)
       <select name="tipo">
@@ -83,6 +85,15 @@
       <option value="1">Administrador</option>
       <option value="2">Mesero</option>
       <option value="3" selected>Cajero</option>
+      <option value="4">Cocinero</option>
+    </select>
+     @elseif($usuario->tipo == 4)
+      <select name="tipo">
+      <option value="" disabled selected>Elige el estado</option>
+      <option value="1">Administrador</option>
+      <option value="2">Mesero</option>
+      <option value="3">Cajero</option>
+      <option value="4" selected>Cocinero</option>
     </select>
     @endif
     <label>Tipo de usuario</label>

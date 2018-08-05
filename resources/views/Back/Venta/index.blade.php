@@ -1,6 +1,6 @@
 @extends ('layouts.Menu')
 @section ('contenido')
-
+@if(Auth::user()->tipo==1)
 <div class="row">
    <div class="col s12 ">
    	<div class="row">
@@ -22,8 +22,7 @@
               <th>Folio</th>
               <th>Nombre</th>
               <th>Total</th>
-              <th>Pagado</th>
-              <th>Cambio</th>
+              <th>Fecha</th>
               <th>Estado</th>
               <th>Tipo</th>
               <th>Opciones</th>
@@ -35,8 +34,7 @@
             <td>{{$ve->orden}}</td>
             <td>{{$ve->nombre}}</td>
             <td>{{$ve->total}}</td>
-            <td>{{$ve->pagado}}</td>
-            <td>{{$ve->cambio}}</td>
+            <td>{{$ve->fecha}}</td>
             @if($ve->estado==0)
             <td>Saldado</td>
             @elseif($ve->estado==1)
@@ -59,9 +57,11 @@
   </div>
   </div>
    </div>
-
     </div>
      {{$ventas->render()}}
     </div>
+    @else
+ @include('/Error/error')
+@endif
 
 @endsection

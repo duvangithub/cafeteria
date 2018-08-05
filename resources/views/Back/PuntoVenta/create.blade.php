@@ -80,8 +80,11 @@
     </p>
   </div>
     </div>
-    <div class="row">
-       <div class="input-field col l4 m4 s12 proID">
+     <div class="row">
+       <div class="input-field proID">
+      </div>
+       <div class="input-field col l4 m4 s12 proNum">
+
       </div>
        <div class="input-field col l4 m4 s12 proNombre">
       </div>
@@ -136,9 +139,9 @@
    <div class="row">
      <div class="row">
       <div class="input-field col l12 m12 s12">
-        <i class="material-icons prefix">attach_money</i>
-        <input id="Total" name="Total" type="number" step="any" class="validate" required>
-        <label for="Total">Total</label>
+        <input id="Total" name="Total" type="hidden" step="any" class="validate" required>
+        <h4>Total</h4>
+        <h3 id="tot"></h3>
       </div>
      </div>
       <div class="row">
@@ -168,7 +171,7 @@
     <div class="col l12 m12 s12" id="guardar">
      <input name="_token" value="{{ csrf_token() }}" type="hidden">
      <button class="btn blue opera" type="submit">Guardar<i class="material-icons right">send</i></button>
-     <button class="btn red" type="reset">Cancelar<i class="material-icons right">clear</i></button>
+     <a class="waves-effect waves-light btn red" href="/Back/PuntoVenta"><i class="material-icons right">clear</i>Cancelar</a>
     </div>
   </div>
 </div>
@@ -241,6 +244,8 @@ function evaluar(){
 
   function Total(){
     $("#Total").val(total);
+
+    $("#tot").html("$"+total);
   }
  
 

@@ -18,6 +18,7 @@ use DB;
 use Carbon\Carbon;
 use Response;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 
 class VentasController extends Controller
@@ -35,9 +36,10 @@ class VentasController extends Controller
     		 $ventas=DB::table('venta as v')
                 ->join('pago as pa', 'v.idVenta','=','pa.idVenta')
                 ->join('orden as o','v.idOrden','=','o.idOrden')
-                ->select('v.idVenta','v.Total as total','pa.Pagado as pagado','pa.Cambio as cambio','o.Estado as estado','pa.Tarjeta as tipo','o.idOrden as idorden','o.Orden as orden','o.Nombre as nombre')
+                ->select('v.idVenta','v.Total as total','pa.Pagado as pagado','pa.Cambio as cambio','o.Estado as estado','pa.Tarjeta as tipo','o.idOrden as idorden','o.Orden as orden','o.Nombre as nombre','o.Fecha as fecha')
             ->where('o.Orden','LIKE','%'.$query.'%')
             ->Orwhere('pa.Tarjeta','LIKE','%'.$query.'%')
+            ->Orwhere(DB::raw('DATE(o.Fecha)'),'LIKE','%'.$query.'%')
             ->orderBy('idVenta', 'DESC')
     		->paginate(7);
     		return view('Back.Venta.index',["ventas"=>$ventas,"SearchText"=>$query]);
@@ -74,8 +76,10 @@ class VentasController extends Controller
         }catch(\Exception $e){
             DB::rollback();
         }
-            
+        if(Auth::user()->tipo=='1'){   
         return Redirect::to('Back/Orden');
+        }elseif(Auth::user()->tipo=='2')
+        return Redirect::to('Back/Mesero');
         }
 
          public function show($id){

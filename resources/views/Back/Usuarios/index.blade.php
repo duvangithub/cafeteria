@@ -39,6 +39,8 @@
             <td>Mesero</td>
             @elseif($us->tipo==3)
             <td>Cajero</td>
+            @elseif($us->tipo==4)
+            <td>Cocinero</td>
             @endif
             <td><img src="{{asset('Imagenes/Usuarios/'.$us->imagen)}}" alt="{{$us->name}}" height="100px" width="100px" class="responsive-img"></td>
             <td>

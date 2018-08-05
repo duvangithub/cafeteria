@@ -72,6 +72,7 @@
            <option value="1">Administrador</option>
            <option value="2">Mesero</option>
            <option value="3">Cajero</option>
+           <option value="4">Cocinero</option>
           </select>
         <label>Tipo de usuario</label>
        </div>

@@ -11,7 +11,7 @@ use cafeteria\Http\Requests\OrdenRequest;
 use cafeteria\Orden;
 use cafeteria\DetalleOrden;
 use cafeteria\Categorias;
-use cafeteria\Pago;
+use cafeteria\Ventas;
 use Illuminate\Support\Facades\Auth;
 // use cafeteria\Categorias;
 use DB;
@@ -44,9 +44,12 @@ class BOrdenController extends Controller
     		->Orwhere('o.Orden','LIKE','%'.$query.'%')
             ->where('o.Eliminar','=','1')
             ->where('o.idMesas','!=','6')
+            ->Orwhere(DB::raw('DATE(o.Fecha)'),'LIKE','%'.$query.'%')
+            ->where('o.Eliminar','=','1')
+            ->where('o.idMesas','!=','6')
     		->orderBy('idOrden', 'DESC')
             ->groupBy('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion','o.Usuario')
-    		->paginate(7);
+    		->paginate(12);
     		return view('Back.Orden.index',["ordenes"=>$ordenes,"SearchText"=>$query]);
             
     	}
@@ -54,7 +57,10 @@ class BOrdenController extends Controller
     }
      public function create(){
     	
-    	$mesas=DB::table('mesas')->where('Eliminar','=','1')->get(); 
+    	$mesas=DB::table('mesas')
+        ->where('Eliminar','=','1')
+        ->where('idMesas','!=','6')
+        ->get(); 
         $categorias=Categorias::all();
         $folio=DB::table('orden')->max('idOrden');
     	return view("Back.Orden.create",["mesas"=>$mesas,"folio"=>$folio,"categorias"=>$categorias]);
@@ -86,6 +92,7 @@ class BOrdenController extends Controller
                 $detalle->idProductos=$idProductos[$cont];
                 $detalle->Cantidad=$Cantidad[$cont];
                 $detalle->Costo=$Costo[$cont];
+                $detalle->Comanda='1';
                 $detalle->save();
                 $cont=$cont+1;
             }
@@ -122,12 +129,12 @@ class BOrdenController extends Controller
     }
 
 
-
      public function destroy($id){
     	
     	$orden=Orden::findOrFail($id);
         $orden->Eliminar='0';
-        $orden->Estado='0';
+        $orden->Estado='2';
+        $orden->Comanda='0';
         $orden->update();
         return Redirect::to("Back/Mesas");
 

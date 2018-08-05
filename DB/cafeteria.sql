@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`detalleorden` (
   `idDetalleorden` INT NOT NULL AUTO_INCREMENT,
   `Cantidad` INT(100) NOT NULL,
   `Costo` DECIMAL(5,2) NOT NULL,
+  `Comanda` TINYINT(4) NOT NULL,
   `idOrden` INT(11) NOT NULL,
   `idProductos` INT(11) NOT NULL,
   PRIMARY KEY (`idDetalleorden`),

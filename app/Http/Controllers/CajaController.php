@@ -26,7 +26,6 @@ class CajaController extends Controller
          $this->middleware('auth');
 
     }
-    // Index
 
     public function index(Request $request){
 
@@ -39,10 +38,12 @@ class CajaController extends Controller
     		->where('o.Nombre','LIKE','%'.$query.'%')
             ->where('o.Eliminar','=','1')
             ->where('o.idMesas','=','6')
+            ->where('o.Usuario','=',Auth::user()->name)
             ->where(DB::raw('DATE(o.Fecha)'),'=',DB::raw('curdate()'))
     		->Orwhere('o.Orden','LIKE','%'.$query.'%')
             ->where('o.Eliminar','=','1')
             ->where('o.idMesas','=','6')
+            ->where('o.Usuario','=',Auth::user()->name)
             ->where(DB::raw('DATE(o.Fecha)'),'=',DB::raw('curdate()'))
     		->orderBy('idOrden', 'DESC')
             ->groupBy('o.idOrden','o.Fecha','o.Nombre','o.Estado','o.Orden','m.Descripcion','o.Usuario')
@@ -86,6 +87,7 @@ class CajaController extends Controller
                 $detalle->idProductos=$idProductos[$cont];
                 $detalle->Cantidad=$Cantidad[$cont];
                 $detalle->Costo=$Costo[$cont];
+                $detalle->Comanda='1';
                 $detalle->save();
                 $cont=$cont+1;
             }
