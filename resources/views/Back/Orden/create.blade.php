@@ -82,7 +82,11 @@
   </div>
     </div>
     <div class="row">
-       <div class="input-field col l4 m4 s12 proID">
+       <div class="input-field proID">
+      </div>
+       <div class="input-field proStock">
+      </div>
+      <div class="input-field col l4 m4 s12 proNum">
       </div>
        <div class="input-field col l4 m4 s12 proNombre">
       </div>
@@ -200,6 +204,12 @@ function evaluar(){
     $("#total").html("$/. " + total);   
     $("#fila" + index).remove();
     evaluar();
+  }
+
+  function stock(){
+
+ cantidad=$(".pCantidad").val();
+
   }
 </script>
 @endpush

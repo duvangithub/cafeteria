@@ -33,6 +33,7 @@ function onSelectProjectChange(){
         	var html_nombre = '<i class="material-icons prefix">local_dining</i>';
           var html_id = '<i class="material-icons prefix"></i>';
         	var html_num = '<i class="material-icons prefix">confirmation_number</i>';
+          var html_stock = '<i class="material-icons prefix"></i>';
         	for(var i=0; i<data2.length; ++i)
 			html+='<input disabled name="Precio" value="'+data2[i].Precio+'" id="disabled" type="text" class="validate pPrecio">';
 
@@ -45,6 +46,9 @@ function onSelectProjectChange(){
       for(var i=0; i<data2.length; ++i)
       html_num+='<input disabled  name="pNum" value="'+data2[i].NumProducto+'" id="disabled" type="text" class="validate pNum">';
 
+      for(var i=0; i<data2.length; ++i)
+      html_stock+='<input disabled  name="pStock" value="'+data2[i].Stock+'" id="disabled" type="hidden" class="validate pStock">';
+
       
 
 
@@ -54,6 +58,7 @@ function onSelectProjectChange(){
 		$('.proNombre').html(html_nombre);
 		$('.proID').html(html_id);
     $('.proNum').html(html_num);
+    $('.proStock').html(html_stock);
    
 
         });

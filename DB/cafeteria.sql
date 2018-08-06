@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`orden` (
   `Estado` TINYINT(4) NOT NULL,
   `Orden` INT(255) NOT NULL,
   `Eliminar` TINYINT(4) NOT NULL,
+  'Usuario' VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idOrden`),
   INDEX `fk_orden_mesas1_idx` (`idMesas` ASC),
   CONSTRAINT `fk_orden_mesas1`
