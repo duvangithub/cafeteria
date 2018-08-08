@@ -27,9 +27,17 @@ Route::resource('Back/Compra','OrdenVentaController');
 Route::resource('Back/PuntoVenta','CajaController');
 Route::resource('Back/Venta','VentasController');
 Route::resource('Back/Comanda','ComandaController');
-
+Route::resource('PDF', 'PdfController');
 Route::resource('Back/Usuarios','UsuarioController');
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('pdf', function(){
+
+    $pdf = PDF::loadView('vista');
+    return $pdf->stream('Recibo.pdf');
+});
+
+Route::resource('Vista/PDF', 'OrdenVentaController');

@@ -1,6 +1,6 @@
 $(function(){
 
-	// $('#select-cate').on('change', onSelectProjectChange);
+	$('#select-cate').on('change', onSelectProjectChange);
 
 	
 

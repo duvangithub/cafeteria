@@ -57,6 +57,7 @@
             @endif
              <a href="#modal-delete-{{$o->idOrden}}" data-toggle="modal" class="waves-effect waves-light btn modal-trigger red"><i class="material-icons">delete</i></a>
             </td>
+            
           </tr>
           	@include('Back.Orden.modal')
             @endforeach

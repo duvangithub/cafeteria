@@ -8,6 +8,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/cafeteria/public/Back/Categorias/{id}/Productos', 'ProductosController@byCate');
-Route::get('/cafeteria/public/Back/Productos/{id}/Productos', 'ProductosController@byPro');
-Route::get('/cafeteria/public/Back/Orden/{id}/Orden', 'BOrdenController@byOrden');
+Route::get('/Back/Categorias/{id}/Productos', 'ProductosController@byCate');
+Route::get('/Back/Productos/{id}/Productos', 'ProductosController@byPro');
+Route::get('/Back/Orden/{id}/Orden', 'BOrdenController@byOrden');

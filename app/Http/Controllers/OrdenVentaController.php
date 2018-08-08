@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class OrdenVentaController extends Controller
 {
@@ -134,9 +135,13 @@ class OrdenVentaController extends Controller
                 ->select('v.Total as total','pa.Pagado as pagado','pa.Cambio as cambio','pa.Estado as estado','pa.Tarjeta as tipo')
                 ->where('v.idOrden','=',$id)->get();
 
-    	return view("Back.Compra.show",["orden"=>$orden, "detalle"=>$detalle,"venta"=>$venta]);
+        return view("Back.Compra.show",["orden"=>$orden, "detalle"=>$detalle,"venta"=>$venta]);
+        
+        
 
     }
+
+    
 
 
 
@@ -151,4 +156,5 @@ class OrdenVentaController extends Controller
 
 
     }
+   
 }
