@@ -79,7 +79,7 @@ class PdfController extends Controller
                 ->select('v.Total as total','pa.Pagado as pagado','pa.Cambio as cambio','pa.Estado as estado','pa.Tarjeta as tipo')
                 ->where('v.idOrden','=',$id)->get();
 
-        //return view("Back.Compra.show",["orden"=>$orden, "detalle"=>$detalle,"venta"=>$venta]);
+        
         $pdf = PDF::loadView('PDF.vista',["orden"=>$orden, "detalle"=>$detalle,"venta"=>$venta]);
     return $pdf->stream('Recibo.pdf');
     }

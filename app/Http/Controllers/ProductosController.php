@@ -130,4 +130,13 @@ class ProductosController extends Controller
         return Redirect::to('Back/Productos');
 
     }
+
+    public function getProductosVendidos(){
+        $productos_mas_vendidos = DB::table('detalleorden as dp')
+                                    ->select('p.idProductos','p.Descripcion',DB::raw('sum(dp.Cantidad) as numero_vendido'))
+                                    ->join('productos as p','p.idProductos','=','dp.idProductos')
+                                    ->groupBy('p.idProductos','p.Descripcion')
+                                    ->orderBy('numero_vendido','DESC')->get();
+        return view(" Back.Graficas.GraficaP",["productos_mas_vendidos"=>$productos_mas_vendidos]);
+    }
 }

@@ -157,4 +157,7 @@ class OrdenVentaController extends Controller
 
     }
    
+   public function getProductosVendidos(){
+    return 0;
+   }
 }

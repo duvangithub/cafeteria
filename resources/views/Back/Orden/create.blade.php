@@ -151,7 +151,15 @@
 
   $(document).ready(function(){
     $('#bt_add').click(function(){
+       cantidad=$(".pCantidad").val();
+       stock=$(".pStock").val();
+
+       if(stock >= cantidad){
       agregar();
+    }else{
+      alert("No hay suficientes productos")
+
+    }
     });
   });
 

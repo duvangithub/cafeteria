@@ -81,8 +81,12 @@
     </p>
   </div>
     </div>
-    <div class="row">
-       <div class="input-field col l4 m4 s12 proID">
+     <div class="row">
+       <div class="input-field proID">
+      </div>
+       <div class="input-field proStock">
+      </div>
+      <div class="input-field col l4 m4 s12 proNum">
       </div>
        <div class="input-field col l4 m4 s12 proNombre">
       </div>
@@ -147,7 +151,15 @@
 
   $(document).ready(function(){
     $('#bt_add').click(function(){
+       cantidad=$(".pCantidad").val();
+       stock=$(".pStock").val();
+
+       if(stock >= cantidad){
       agregar();
+    }else{
+      alert("No hay suficientes productos")
+
+    }
     });
   });
 

@@ -88,23 +88,24 @@ h3{
     </table>
   </footer>
   <div id="content">
+<p style="text-align:Center; font-size:20px;"><span class="titulo">Orden:</span> {{$orden->Orden}}</p>
 <p style="text-align:Center; font-size:20px;"><span class="titulo">Cliente:</span> {{$orden->Nombre}}</p>
 <p style="text-align: right;">Fecha: {{$orden->Fecha}} </p>
 <hr style="border:1px dotted black; width:100%"/>
 <table>
   <tr>
-    <th>Cantidad</th>
     <th>Productos</th>
     <th>Precio</th>
+    <th>Cantidad</th>
     <th>Subtotal</th>
     
   </tr>
   
   @foreach($detalle as $det)
   <tr>
-    <td>{{$det->Cantidad}}</td>
     <td>{{$det->producto}}</td>
-    <td>{{$det->Costo}}</td>
+    <td>{{$det->precio}}</td>
+    <td>{{$det->Cantidad}}</td>
     <td>{{$det->Cantidad*$det->precio}}</td>
   </tr>
   @endforeach

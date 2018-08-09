@@ -48,7 +48,7 @@
      <div class="row">
         <!-- Tabla -->
         <div class="col l12 m12 s12">
-          <table class="responsive-table striped" id="detalles">
+          <table class="striped" id="detalles">
         <thead>
           <tr>
               <th>Producto</th>
@@ -82,7 +82,7 @@
      <div class="row">
         <!-- Tabla -->
         <div class="col l12 m12 s12">
-          <table class="responsive-table striped">
+          <table class="striped">
         <thead>
           <tr>
               <th>Total</th>
@@ -115,6 +115,7 @@
       </table>
         </div>
      </div>
+      <a href="{{URL::action('Pdf2Controller@show',$orden->idOrden)}}" class="waves-effect waves-light btn green" target="_blank"><i class="material-icons left">picture_as_pdf</i>Recibo</a>
    <a href="{{URL::action('BOrdenController@index')}}" class="waves-effect waves-light btn red"><i class="material-icons left">chevron_left</i>Atras</a>
   </div>
    </div>

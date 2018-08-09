@@ -28,16 +28,19 @@ Route::resource('Back/PuntoVenta','CajaController');
 Route::resource('Back/Venta','VentasController');
 Route::resource('Back/Comanda','ComandaController');
 Route::resource('PDF', 'PdfController');
+Route::resource('PDF', 'Pdf2Controller');
 Route::resource('Back/Usuarios','UsuarioController');
+
+Route::get('Back/Graficas', 'ProductosController@getProductosVendidos');
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('pdf', function(){
+// Route::get('pdf', function(){
 
-    $pdf = PDF::loadView('vista');
-    return $pdf->stream('Recibo.pdf');
-});
+//     $pdf = PDF::loadView('vista');
+//     return $pdf->stream('Recibo.pdf');
+// });
 
 Route::resource('Vista/PDF', 'OrdenVentaController');
