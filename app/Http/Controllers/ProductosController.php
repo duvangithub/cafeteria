@@ -131,12 +131,24 @@ class ProductosController extends Controller
 
     }
 
+    public function grafica(){
+        return view('Back.Graficas.GraficaP');
+
+    }
+
     public function getProductosVendidos(){
         $productos_mas_vendidos = DB::table('detalleorden as dp')
-                                    ->select('p.idProductos','p.Descripcion',DB::raw('sum(dp.Cantidad) as numero_vendido'))
+                                    ->select('p.idProductos as id','p.Descripcion as descripcion',DB::raw('sum(dp.Cantidad) as numero_vendido'))
                                     ->join('productos as p','p.idProductos','=','dp.idProductos')
                                     ->groupBy('p.idProductos','p.Descripcion')
-                                    ->orderBy('numero_vendido','DESC')->get();
-        return view(" Back.Graficas.GraficaP",["productos_mas_vendidos"=>$productos_mas_vendidos]);
+                                    ->orderBy('numero_vendido','DESC')->take(3)->get();
+        return $productos_mas_vendidos;
+    }
+
+     public function getVentasHora(){
+        $ventas_hora = DB::table('orden as o')
+                                    ->join()
+                                    ->orderBy('numero_vendido','DESC')->take(3)->get();
+        return $productos_mas_vendidos;
     }
 }

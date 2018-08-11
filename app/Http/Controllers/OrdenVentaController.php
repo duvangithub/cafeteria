@@ -66,6 +66,7 @@ class OrdenVentaController extends Controller
         try{
             DB::beginTransaction();
             $orden = new Orden;
+            $orden = new Orden;
             $orden->idMesas="6";
             $mytime = Carbon::now('America/Cancun');
             $orden->Fecha=$mytime->toDateTimeString();
@@ -105,9 +106,7 @@ class OrdenVentaController extends Controller
             $pago->Tarjeta=$request->get('Tarjeta');
             $pago->save();
 
-
-
-            DB::commit();
+             DB::commit();
         }catch(\Exception $e){
             DB::rollback();
         }
@@ -116,7 +115,6 @@ class OrdenVentaController extends Controller
         }
     
      public function show($id){
-
         $orden=DB::table('orden as o')
             ->join('mesas as m','o.idMesas','=','m.idMesas')
             ->join('detalleorden as do','o.idOrden','=','do.idOrden')
@@ -136,9 +134,6 @@ class OrdenVentaController extends Controller
                 ->where('v.idOrden','=',$id)->get();
 
         return view("Back.Compra.show",["orden"=>$orden, "detalle"=>$detalle,"venta"=>$venta]);
-        
-        
-
     }
 
     
@@ -150,14 +145,16 @@ class OrdenVentaController extends Controller
     	$orden=Orden::findOrFail($id);
         $orden->Eliminar='0';
         $orden->Estado='2';
-        $orden->Comanda='0';
         $orden->update();
-        return Redirect::to("Back/Compra");
+
+        $detalle=DetalleOrden::findOrFail($id);
+        $detalle->Comanda='0';
+        $detalle->update();
+
+        return Redirect::to("Back/PuntoVenta");
 
 
     }
    
-   public function getProductosVendidos(){
-    return 0;
-   }
+   
 }

@@ -47,7 +47,7 @@ function onSelectProjectChange(){
       html_num+='<input disabled  name="pNum" value="'+data2[i].NumProducto+'" id="disabled" type="text" class="validate pNum">';
 
       for(var i=0; i<data2.length; ++i)
-      html_stock+='<input disabled  name="pStock" value="'+data2[i].Stock+'" id="disabled" type="hidden" class="validate pStock">';
+      html_stock+='<input disabled  name="pStock" value="'+data2[i].Stock+'" id="pStock" type="hidden" class="validate pStock">';
 
       
 
@@ -85,6 +85,7 @@ function onSelectProjectChange(){
 
             form.Costo.value=resultado;
             }
+            
 function resta(form){
           var resultado;
           var x=0;

@@ -116,7 +116,6 @@
         </div>
      </div>
      <a href="{{URL::action('PdfController@show',$orden->idOrden)}}" class="waves-effect waves-light btn green" target="_blank"><i class="material-icons left">picture_as_pdf</i>Recibo</a>
-
    <a href="{{URL::action('OrdenVentaController@index')}}" class="waves-effect waves-light btn red"><i class="material-icons left">chevron_left</i>Atras</a>
   </div>
    </div>

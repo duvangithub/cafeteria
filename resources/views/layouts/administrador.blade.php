@@ -38,22 +38,9 @@
           <li><a class="waves-effect waves-teal" href="/Back/Tamaños">Tamaños<i class="material-icons right">chevron_right</i></a></li>
          <li><a class="waves-effect waves-teal" href="/Back/Productos">Catalogo de productos<i class="material-icons right">chevron_right</i></a></li>
           <li><a class="waves-effect waves-teal" href="/Back/Venta">Ventas realizadas<i class="material-icons right">chevron_right</i></a></li>
-        <li><a class="waves-effect waves-teal" href="/Back/Usuarios">Lista de usuarios<i class="material-icons right">chevron_right</i></a></li>         
-        <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li>
-            <a class="collapsible-header">Estadisticas<i class="material-icons">expand_more</i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="#!">First</a></li>
-                <li><a href="#!">Second</a></li>
-                <li><a href="#!">Third</a></li>
-                <li><a href="#!">Fourth</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </li>
+        <li><a class="waves-effect waves-teal" href="/Back/Usuarios">Lista de usuarios<i class="material-icons right">chevron_right</i></a></li>   
+         <li><a class="waves-effect waves-teal" href="/Back/Graficas">Graficas<i class="material-icons right">chevron_right</i></a></li>      
+        
       </ul>
     </div>
   </nav> 

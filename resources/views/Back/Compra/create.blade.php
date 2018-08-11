@@ -1,13 +1,13 @@
 @extends ('layouts.Menu')
 @section ('contenido')
-
+@if(Auth::user()->tipo==1)
 <div class="row">
    <div class="col s12 ">
    	<div class="row">
    	 <div class="card darken-1">
      <div class="card-content">
 <div class="row">
-	<h3>Nueva compra</h3>
+	<h3>Crear venta</h3>
 			@if(count($errors)>0)
 			<div>
 				<ul>
@@ -53,6 +53,8 @@
         <label for="Nombre">Nombre</label>
       </div>
      </div>
+     <!-- Boton cancelar -->
+     <a class="waves-effect waves-light btn red" href="/Back/Compra"><i class="material-icons right">clear</i>Cancelar</a>
   </div>
   </div>
    
@@ -100,7 +102,7 @@
       </div>
       <div class="input-field col l4 m4 s12">
         <label for="Costo">Costo</label>
-        <input  id="Costo" name="pCosto" type="number" class="validate pCosto">
+        <input  id="Costo" name="pCosto" type="number" class="validate pCosto" onblur="multiplica(this.form)">
       </div>
       <div class="col l4 m4 s12">
           <button class="btn waves-effect waves-light green" type="button" id="bt_add">Agregar
@@ -132,6 +134,8 @@
       </table>
         </div>
      </div>
+     <!-- Boton cancelar -->
+     <a class="waves-effect waves-light btn red" href="/Back/Compra"><i class="material-icons right">clear</i>Cancelar</a>
   </div>
 </div>
  
@@ -140,9 +144,9 @@
    <div class="row">
      <div class="row">
       <div class="input-field col l12 m12 s12">
-        <input id="Total" name="Total" type="hidden" step="any" class="validate" required>
+        <input id="Total" name="Total" type="hidden" step="any" class="validate Total" required>
         <h4>Total</h4>
-        <h3 id="tot"></h3>
+        <h3 id="tot" class="tot"></h3>
       </div>
      </div>
       <div class="row">
@@ -164,14 +168,14 @@
       </div>
        <div class="input-field col l6 m6 s12">
         <i class="material-icons prefix">label</i>
-        <input id="Cambio" name="Cambio" type="number" step="any" class="validate" required value="{{old('Cambio')}}">
+        <input id="Cambio" name="Cambio" type="number" step="any" class="validate" required value="{{old('Cambio')}}" onblur="resta(this.form)">
         <label for="Cambio">Cambio</label>
       </div>
      </div>
      <!-- Botones -->
     <div class="col l12 m12 s12" id="guardar">
      <input name="_token" value="{{ csrf_token() }}" type="hidden">
-     <button class="btn blue opera" type="submit">Guardar<i class="material-icons right">send</i></button>
+     <button class="btn blue opera" id="enviar" type="submit">Guardar<i class="material-icons right">send</i></button>
      <a class="waves-effect waves-light btn red" href="/Back/Compra"><i class="material-icons right">clear</i>Cancelar</a>
     </div>
   </div>
@@ -185,17 +189,15 @@
 @push('scripts')
 <script type="text/javascript">
 
- $(document).ready(function(){
+  $(document).ready(function(){
     $('#bt_add').click(function(){
-       cantidad=$(".pCantidad").val();
-       stock=$(".pStock").val();
-
-       if(stock >= cantidad){
       agregar();
-    }else{
-      alert("No hay suficientes productos")
+    });
+  });
 
-    }
+   $(document).ready(function(){
+    $('#enviar').click(function(){
+      validaciones();
     });
   });
 
@@ -204,28 +206,49 @@
   subtotal=[];
 
   function agregar(){
-    idProductos=$(".pID").val();
+    idProductos=parseInt($(".pID").val());
     producto=$(".pProducto").val();
     precio=$(".pPrecio").val();
     cantidad=$(".pCantidad").val();
-    costo=$(".pCosto").val();
+    costo=parseInt($(".pCosto").val());
+    stock=parseInt($(".pStock").val());
     if(idProductos!=0 && cantidad!=""  && cantidad > 0 && producto!="" && costo!="" ){
+      if(stock >= cantidad){
 
       subtotal[cont]=(cantidad*precio);
       total=total+subtotal[cont];
 
-      var fila='<tr class="striped" id="fila'+cont+'"><td><button type="button" class="btn red" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idProductos[]" value="'+idProductos+'">'+producto+'</td><td><input type="hidden" name="Cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="hidden" name="Costo[]" value="'+costo+'">'+subtotal[cont]+'</td></tr>';
+      var fila='<tr class="striped" id="fila'+cont+'"><td><button type="button" class="btn red" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" id="producto" name="idProductos[]" value="'+idProductos+'">'+producto+'</td><td><input type="hidden" id="cantidad" name="Cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="hidden" id="costo" name="Costo[]" value="'+costo+'">'+subtotal[cont]+'</td></tr>';
        cont++;
        limpiar();
        $('#total').html("$/ " + total);
        evaluar();
        $('#detalles').append(fila);
+       Total();
+        }else{
+      alert("No hay suficientes productos en el stock")
+      limpiar();
 
-    }
-    else
+     }
+
+    }else
     {
       alert("Error al ingresar el detalle del ingreso, revise los datos del articulo")
     }
+
+  }
+
+    function validaciones(){
+     na=$("#Nombre").val();
+     pro=parseInt($("#producto").val());
+     can=$("#cantidad").val();
+     cos=$("#costo").val();
+   
+     if (na =="" || can =="") {
+
+      alert("Hacen falta datos, revise el formulario por favor");
+
+     }
 
   }
 
@@ -245,24 +268,23 @@ function evaluar(){
 
  function eliminar(index){
     total=total-subtotal[index]; 
-    $("#total").html("$/. " + total);
+    $("#total").html("$/" + total);
     $("#fila" + index).remove();
     evaluar();
+    Total();
   }
 
   function Total(){
-    $("#Total").val(total);
+    $(".Total").val(total);
 
-    $("#tot").html("$"+total);
+    $(".tot").html("$"+total);
   }
 
-    
- 
-
-  
-            
 
 </script>
 
 @endpush
+@else
+ @include('/Error/error')
+@endif
 @endsection

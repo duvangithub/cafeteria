@@ -16,7 +16,7 @@
      <div class="card darken-1">
      <div class="card-content">
 <div class="row">
-    <table class="striped responsive-table centered" >
+    <table class="striped responsive-table centered" id="idTabla" >
         <thead>
           <tr>
               <th>Codigo</th>
@@ -36,9 +36,9 @@
             <td>{{$p->NumProducto}}</td>
             <td>{{$p->Descripcion}}</td>
             <td>{{$p->tamanio}}</td>
-            <td>{{$p->Precio}}</td>
+            <td >{{$p->Precio}}</td>
             @if($p->Stock <= 10)
-             <td bgcolor="#c62828 red darken-3">{{$p->Stock}}</td>
+             <td id="stocks" bgcolor="#c62828 red darken-3" >{{$p->Stock}}</td>
             @else
               <td>{{$p->Stock}}</td>
             @endif

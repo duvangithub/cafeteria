@@ -134,9 +134,13 @@ class BOrdenController extends Controller
     	$orden=Orden::findOrFail($id);
         $orden->Eliminar='0';
         $orden->Estado='2';
-        $orden->Comanda='0';
         $orden->update();
-        return Redirect::to("Back/Mesas");
+
+        $detalle=DetalleOrden::findOrFail($id);
+        $detalle->Comanda='0';
+        $detalle->update();
+
+        return Redirect::to("Back/Orden");
 
 
     }

@@ -39,8 +39,8 @@ class ComandaController extends Controller
     		->Orwhere('p.Descripcion','LIKE','%'.$query.'%')
             ->where('o.Eliminar','=','1')
             ->where('d.Comanda','=','1')
-    		->orderBy('idDetalleorden', 'DESC')
-    		->paginate(10);
+    		->orderBy('idDetalleorden', 'ASC')
+    		->paginate(20);
     		return view('Back.Comanda.index',["detalles"=>$detalles,"SearchText"=>$query]);
             
     	}

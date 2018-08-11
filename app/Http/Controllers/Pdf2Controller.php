@@ -74,7 +74,7 @@ class Pdf2Controller extends Controller
                 ->select('p.Descripcion as producto','p.Precio as precio','d.Cantidad','d.Costo')
                 ->where('d.idOrden','=',$id)->get();
 
-        $pdf = PDF::loadView('PDF.vista2',["orden"=>$orden, "detalle"=>$detalle]);
+        $pdf = PDF::loadView('Back.PDF2.vista2',["orden"=>$orden, "detalle"=>$detalle]);
     return $pdf->stream('Recibo.pdf');
     }
 

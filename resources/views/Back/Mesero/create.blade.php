@@ -3,27 +3,36 @@
 
 <div class="row">
    <div class="col s12 ">
-   	<div class="row">
-   	 <div class="card darken-1">
+    <div class="row">
+     <div class="card darken-1">
      <div class="card-content">
 <div class="row">
-	<h3>Nuevas ordenes</h3>
-			@if(count($errors)>0)
-			<div>
-				<ul>
-					@foreach ($errors->all() as $error)
-					<li>{{$error}}</li>
-					@endforeach
-				</ul>
-			@endif
-		</div>
-	</div>
+  <h3>Crear venta</h3>
+      @if(count($errors)>0)
+      <div>
+        <ul>
+          @foreach ($errors->all() as $error)
+          <li>{{$error}}</li>
+          @endforeach
+        </ul>
+      @endif
+    </div>
+  </div>
 </div>
 {!!Form::open(array('url'=>'Back/Mesero','method'=>'POST','autocomplete'=>'off','file'=>'true', 'enctype'=>'multipart/form-data'))!!}
 {{Form::token()}}
 
+
+<div class="card-tabs">
+      <ul class="tabs tabs-fixed-width">
+        <li class="tab"><a class="active" href="#test1">Orden</a></li>
+        <li class="tab"><a href="#test2">Elegir productos</a></li>
+      </ul>
+    </div>
+
  <div class="card darken-1">
   <div class="card-content">
+  <div id="test1">
    <div class="row">
      <div class="row">
     <div class="input-field col l6 m6 s12">
@@ -42,8 +51,7 @@
         <input id="Nombre" name="Nombre" type="text" class="validate" required value="{{old('Nombre')}}">
         <label for="Nombre">Nombre</label>
       </div>
-     </div>
-     <div class="row">
+       <div class="row">
         <div class="input-field col s12">
            <i class="material-icons prefix">apps</i>
     <select name="idMesas" required>
@@ -55,12 +63,16 @@
     <label>Mesas</label>
   </div>
      </div>
+     </div>
+     <!-- Boton cancelar -->
+     <a class="waves-effect waves-light btn red" href="/Back/Mesero"><i class="material-icons right">clear</i>Cancelar</a>
   </div>
-   </div>
-    </div>
+  </div>
+   
+
     <!-- Detalles -->
-   <div class="card darken-1">
-  <div class="card-content">
+  
+  <div id="test2">
    <div class="row">
      <div class="row">
         <div class="input-field col s12">
@@ -101,7 +113,7 @@
       </div>
       <div class="input-field col l4 m4 s12">
         <label for="Costo">Costo</label>
-        <input  id="Costo" name="pCosto" type="number" class="validate pCosto">
+        <input  id="Costo" name="pCosto" type="number" class="validate pCosto" onblur="multiplica(this.form)">
       </div>
       <div class="col l4 m4 s12">
           <button class="btn waves-effect waves-light green" type="button" id="bt_add">Agregar
@@ -133,15 +145,15 @@
       </table>
         </div>
      </div>
-    <div class="col l12 m12 s12" id="guardar">
+     <!-- Botones -->
+     <div class="col l12 m12 s12" id="guardar">
      <input name="_token" value="{{ csrf_token() }}" type="hidden">
-     <button class="btn blue" type="submit">Guardar<i class="material-icons right">send</i></button>
-      <a class="waves-effect waves-light btn red" href="/Back/Mesero"><i class="material-icons right">clear</i>Cancelar</a>
+     <button class="btn blue opera" id="enviar" type="submit">Guardar<i class="material-icons right">send</i></button>
+     <a class="waves-effect waves-light btn red" href="/Back/Mesero"><i class="material-icons right">clear</i>Cancelar</a>
     </div>
   </div>
-  </div>
-   </div>
-
+</div>
+<!-- Extras -->
     </div>
   </div>
 </div>
@@ -151,15 +163,18 @@
 
   $(document).ready(function(){
     $('#bt_add').click(function(){
-       cantidad=$(".pCantidad").val();
-       stock=$(".pStock").val();
+     
 
-       if(stock >= cantidad){
+      
       agregar();
-    }else{
-      alert("No hay suficientes productos")
+    
+      });
+  });
 
-    }
+  $(document).ready(function(){
+    $('#enviar').click(function(){
+      validaciones();
+   
     });
   });
 
@@ -172,8 +187,10 @@
     producto=$(".pProducto").val();
     precio=$(".pPrecio").val();
     cantidad=$(".pCantidad").val();
-    costo=$(".pCosto").val();
+    costo=parseInt($(".pCosto").val());
+    stock=parseInt($(".pStock").val());
     if(idProductos!=0 && cantidad!=""  && cantidad > 0 && producto!="" && costo!="" ){
+       if(stock >= cantidad){
 
       subtotal[cont]=(cantidad*precio);
       total=total+subtotal[cont];
@@ -185,11 +202,27 @@
        evaluar();
        $('#detalles').append(fila);
 
-    }
-    else
+       }else{
+      alert("No hay suficientes productos en el stock")
+      limpiar();
+
+     }
+
+    }else
     {
       alert("Error al ingresar el detalle del ingreso, revise los datos del articulo")
     }
+
+  }
+  function validaciones(){
+     na=$("#Nombre").val();
+     mesa=parseInt($("#idMesas").val());
+   
+     if (na =="" || mesa==null) {
+
+      alert("Hacen falta datos, revise el formulario por favor");
+
+     }
 
   }
 

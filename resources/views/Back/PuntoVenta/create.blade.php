@@ -7,7 +7,7 @@
    	 <div class="card darken-1">
      <div class="card-content">
 <div class="row">
-	<h3>Nueva compra</h3>
+	<h3>Venta</h3>
 			@if(count($errors)>0)
 			<div>
 				<ul>
@@ -53,6 +53,8 @@
         <label for="Nombre">Nombre</label>
       </div>
      </div>
+     <!-- Boton cancelar -->
+     <a class="waves-effect waves-light btn red" href="/Back/PuntoVenta"><i class="material-icons right">clear</i>Cancelar</a>
   </div>
   </div>
    
@@ -100,7 +102,7 @@
       </div>
       <div class="input-field col l4 m4 s12">
         <label for="Costo">Costo</label>
-        <input  id="Costo" name="pCosto" type="number" class="validate pCosto">
+        <input  id="Costo" name="pCosto" type="number" class="validate pCosto" onblur="multiplica(this.form)">
       </div>
       <div class="col l4 m4 s12">
           <button class="btn waves-effect waves-light green" type="button" id="bt_add">Agregar
@@ -132,6 +134,8 @@
       </table>
         </div>
      </div>
+     <!-- Boton cancelar -->
+     <a class="waves-effect waves-light btn red" href="/Back/PuntoVenta"><i class="material-icons right">clear</i>Cancelar</a>
   </div>
 </div>
  
@@ -164,14 +168,14 @@
       </div>
        <div class="input-field col l6 m6 s12">
         <i class="material-icons prefix">label</i>
-        <input id="Cambio" name="Cambio" type="number" step="any" class="validate" required value="{{old('Cambio')}}">
+        <input id="Cambio" name="Cambio" type="number" step="any" class="validate" required value="{{old('Cambio')}}" onblur="resta(this.form)">
         <label for="Cambio">Cambio</label>
       </div>
      </div>
      <!-- Botones -->
     <div class="col l12 m12 s12" id="guardar">
      <input name="_token" value="{{ csrf_token() }}" type="hidden">
-     <button class="btn blue opera" type="submit">Guardar<i class="material-icons right">send</i></button>
+     <button class="btn blue opera" id="enviar" type="submit">Guardar<i class="material-icons right">send</i></button>
      <a class="waves-effect waves-light btn red" href="/Back/PuntoVenta"><i class="material-icons right">clear</i>Cancelar</a>
     </div>
   </div>
@@ -187,15 +191,17 @@
 
  $(document).ready(function(){
     $('#bt_add').click(function(){
-       cantidad=$(".pCantidad").val();
-       stock=$(".pStock").val();
+       
 
-       if(stock >= cantidad){
+      
       agregar();
-    }else{
-      alert("No hay suficientes productos")
+    
+    });
+  });
 
-    }
+ $(document).ready(function(){
+    $('#enviar').click(function(){
+      validaciones();
     });
   });
 
@@ -208,8 +214,10 @@
     producto=$(".pProducto").val();
     precio=$(".pPrecio").val();
     cantidad=$(".pCantidad").val();
-    costo=$(".pCosto").val();
+    costo=parseInt($(".pCosto").val());
+    stock=parseInt($(".pStock").val());
     if(idProductos!=0 && cantidad!=""  && cantidad > 0 && producto!="" && costo!="" ){
+       if(stock >= cantidad){
 
       subtotal[cont]=(cantidad*precio);
       total=total+subtotal[cont];
@@ -220,12 +228,32 @@
        $('#total').html("$/ " + total);
        evaluar();
        $('#detalles').append(fila);
+       Total();
+       
+        }else{
+      alert("No hay suficientes productos en el stock")
+      limpiar();
 
-    }
-    else
+     }
+
+    }else
     {
       alert("Error al ingresar el detalle del ingreso, revise los datos del articulo")
     }
+
+  }
+
+   function validaciones(){
+     na=$("#Nombre").val();
+     pro=parseInt($("#producto").val());
+     can=$("#cantidad").val();
+     cos=$("#costo").val();
+   
+     if (na =="" || can =="") {
+
+      alert("Hacen falta datos, revise el formulario por favor");
+
+     }
 
   }
 
@@ -248,6 +276,7 @@ function evaluar(){
     $("#total").html("$/. " + total);
     $("#fila" + index).remove();
     evaluar();
+    Total();
   }
 
   function Total(){
