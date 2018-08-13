@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
@@ -45,7 +45,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `imagen`, `tipo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Yoel Aguilar', 'Yoelaguilarg@gmail.com', '$2y$10$E/VFfCVpeUJh28WMIAfN4u4m2l8KBiVGRlSsuU.Mndvz60bTsiXW6', '1533139169_Yoel.jpeg', '1', 'TKMTGy0BLmwZkkYeIKkEclYw4s4gwrYI2Bs2JTXifQj73t8jqTcnpTPQp1I4', '2018-08-01 15:59:29', '2018-08-01 15:59:29');
+(1, 'Yoel Aguilar', 'Yoelaguilarg@gmail.com', '$2y$10$E/VFfCVpeUJh28WMIAfN4u4m2l8KBiVGRlSsuU.Mndvz60bTsiXW6', '1533139169_Yoel.jpg', '1', 'TKMTGy0BLmwZkkYeIKkEclYw4s4gwrYI2Bs2JTXifQj73t8jqTcnpTPQp1I4', '2018-08-01 15:59:29', '2018-08-01 15:59:29');
 
 --
 -- Índices para tablas volcadas
