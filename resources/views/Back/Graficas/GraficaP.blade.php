@@ -26,7 +26,7 @@
 
 <div class="card darken-1">
   <div class="card-content">
-    <button class="btn" onclick="ventasDiarias()">Venta del día</button>
+    <button class="btn" onclick="ventasDiarias()">Ventas por día</button>
     <div class="row">
        <canvas id="ventasDiarias" width="600" height="300"></canvas>
     </div>
