@@ -41,7 +41,7 @@ class ProductosController extends Controller
     		->orderBy('idProductos', 'DESC')
     		->paginate(5);
     		return view('Back.Productos.index',["productos"=>$productos,"SearchText"=>$query]);
-            
+
     	}
 
     }
@@ -61,12 +61,12 @@ class ProductosController extends Controller
     }
 
      public function create(){
-    	
+
     	$categorias=DB::table('categorias')
         ->where('Eliminar','=','1')
         ->get();
         $tamanio=DB::table('tamaños')->get();
-    	
+
 
     	return view("Back.Productos.create",["categorias"=>$categorias,"tamanio"=>$tamanio]);
 
@@ -123,7 +123,7 @@ class ProductosController extends Controller
 
 
      public function destroy($id){
-    	
+
     	$producto = Productos::find($id);
     	$producto->Eliminar='0';
     	$producto->update();
@@ -145,10 +145,22 @@ class ProductosController extends Controller
         return $productos_mas_vendidos;
     }
 
-     public function getVentasHora(){
-        $ventas_hora = DB::table('orden as o')
-                                    ->join()
-                                    ->orderBy('numero_vendido','DESC')->take(3)->get();
-        return $productos_mas_vendidos;
+     public function getVentasDiarias(){
+        $ventas_diarias = DB::table('orden as o')
+                            ->select(DB::raw('DATE_FORMAT(Fecha,"%d-%m-%Y") as fecha_sola'),DB::raw('count(o.idOrden) as ventas_realizadas'))
+                            ->groupBy('fecha_sola')
+                            ->orderBy('fecha_sola','ASC')
+                            ->get();
+        return $ventas_diarias;
     }
+
+    public function getMesasSolicitadas(){
+       $ventas_diarias = DB::table('orden as o')
+                           ->select(DB::raw('count(o.idMesas) as solicitado'),'m.Descripcion')
+                           ->join('mesas as m','o.idMesas','=','m.idMesas')
+                           ->whereBetween('Fecha',[date('Y-m-d').' 00:00:00',date('Y-m-d').' 23:59:59'])
+                           ->groupBy('o.idMesas')
+                           ->get();
+       return $ventas_diarias;
+   }
 }
