@@ -9,7 +9,7 @@
    	 <div class="card darken-1">
      <div class="card-content">
 <div class="row">
-	<h4>Graficas</h4>
+	<h4>Gráficas</h4>
 </div>
 </div>
 </div>

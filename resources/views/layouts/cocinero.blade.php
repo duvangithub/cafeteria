@@ -1,6 +1,6 @@
 <nav>
     <div class="nav-wrapper brown darken-2">
-      <a href="#!" class="brand-logo center">Cafeteria</a>
+      <a href="#!" class="brand-logo center">Cafetería</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse left">
         <i class="material-icons">menu</i>
       </a>
