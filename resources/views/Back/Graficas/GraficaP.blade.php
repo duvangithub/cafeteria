@@ -14,17 +14,27 @@
 </div>
 </div>
 </div>
-     <div class="card darken-1">
-     <div class="card-content">
-<div class="row">
-  <button onclick="materialesVendidos()"></button>
-   
-   <canvas id="masVendidos" width="400" height="400"></canvas>
 
-  </div>
-  </div>
-   </div>
+<div class="card darken-1">
+  <div class="card-content">
+    <button class="btn" onclick="materialesVendidos()">Productos más vendidos</button>
+    <div class="row">
+       <canvas id="masVendidos" width="400" height="400"></canvas>
     </div>
+  </div>
+</div>
+
+<div class="card darken-1">
+  <div class="card-content">
+    <button class="btn" onclick="materialesVendidos()">Venta del día</button>
+    <div class="row">
+       <canvas id="masVendidos" width="400" height="400"></canvas>
+    </div>
+  </div>
+</div>
+
+
+</div>
     </div>
 @else
  @include('/Error/error')
@@ -39,7 +49,7 @@
 
 
   function materialesVendidos(){
-    $.get('/api/Back/ProductosVendidos', function (response) { 
+    $.get('/api/Back/ProductosVendidos', function (response) {
       var labels = [];
       var data = [];
       var background = [];
@@ -57,7 +67,7 @@
           label: 'Productos mas vendidos',
           data: data,
           backgroundColor: background,
-          
+
         }]
       }
       var myBarChart = new Chart(ctx, {

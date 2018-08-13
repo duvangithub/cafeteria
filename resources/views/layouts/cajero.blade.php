@@ -1,5 +1,5 @@
 <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper brown darken-2">
       <a href="#!" class="brand-logo center">Cafeteria</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse left">
         <i class="material-icons">menu</i>
@@ -30,9 +30,9 @@
              </form>
         <li><div class="divider"></div></li>
         <li><a class="subheader">Menu</a></li>
-        <li><a class="waves-effect waves-teal" href="/Back/PuntoVenta">Punto de venta<i class="material-icons right">chevron_right</i></a></li> 
+        <li><a class="waves-effect waves-teal" href="/Back/PuntoVenta">Punto de venta<i class="material-icons right">chevron_right</i></a></li>
       </ul>
     </div>
-  </nav> 
-  
+  </nav>
+
   @yield('contenido')
