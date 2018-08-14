@@ -1,46 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Inicio de sesion') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+<div class="row">
+
+<div class="container">
+
+    <div class="card-tabs">
+      <ul class="tabs tabs-fixed-width ">
+        <li class="tab #efebe9 brown lighten-5 "><a class=" active brown-text" href="#test1">Inicio de sesion</a></li>
+      </ul>
+    </div>
+
+              
+                 <div class="card darken-1 ">
+                    <div class="card-content #efebe9 brown lighten-5">
+                         <div id="test1">
+                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" class="s12">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
+                        <div class="row">
+                           <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                             @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
+                            <label for="email">Correo electronico</label>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <i class="material-icons prefix">create</i>
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                             @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
+
+                             <label for="password">Contraseña</label>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="row">
+                            <div class="col m6 offset m4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -53,11 +60,11 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn #66bb6a green lighten-1">
                                     {{ __('Entrar') }}
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a class="btn #29b6f6 light-blue lighten-1" href="{{ route('password.request') }}">
                                     {{ __('Olvidaste tu contraseña') }}
                                 </a>
                             </div>
@@ -66,6 +73,9 @@
                 </div>
             </div>
         </div>
-    </div>
+            
+     </div>
+    
 </div>
+
 @endsection

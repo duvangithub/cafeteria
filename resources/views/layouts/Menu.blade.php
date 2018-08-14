@@ -1,6 +1,6 @@
 <!DOCTYPE html>
   <html>
-    <head>   
+    <head >   
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,7 +17,7 @@
      
     </head>
 
-<body>
+<body class="#efebe9 brown lighten-5">
   @if(Auth::user()->tipo==1)
 
   @include('/layouts/administrador')

@@ -224,8 +224,6 @@
 
      Materialize.toast('Hacen falta datos, revise el formulario por favor', 4000,'#e53935 red darken-1')
 
-     }else{
-       Materialize.toast('Se agrego la nueva orden', 3000,'#66bb6a green lighten-1')
      }
 
   }
