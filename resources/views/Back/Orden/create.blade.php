@@ -112,6 +112,7 @@
         <label for="Cantidad">Cantidad</label>
       </div>
       <div class="input-field col l4 m4 s12">
+        <i class="material-icons prefix">account_circle</i>
         <label for="Costo">Costo</label>
         <input  id="Costo" name="pCosto" type="number" class="validate pCosto" onblur="multiplica(this.form)">
       </div>
@@ -244,10 +245,12 @@ function evaluar(){
 
  function eliminar(index){
     total=total-subtotal[index]; 
-    $("#total").html("$/. " + total);   
+    $("#total").html("$/ " + total);   
     $("#fila" + index).remove();
     evaluar();
   }
+
+  
 
 
  

@@ -29,17 +29,17 @@
                       {{ csrf_field() }}
              </form>
         <li><div class="divider"></div></li>
+         <li><a class="waves-effect waves-teal" href="/Back/Graficas">Graficas<i class="material-icons left">show_chart</i></a></li>
+        <li><a class="waves-effect waves-teal" href="/Back/Comanda">Lista de comandas<i class="material-icons left">confirmation_number</i></a></li>
+        <li><a class="waves-effect waves-teal" href="/Back/Compra">Punto de venta<i class="material-icons left">local_dining</i></a></li>
+        <li><a class="waves-effect waves-teal" href="/Back/Orden">Ordenes<i class="material-icons left">receipt</i></a></li>
+        <li><a class="waves-effect waves-teal" href="/Back/Mesas">Catalogo de mesas <i class="material-icons left">view_module</i></a></li>
+        <li><a class="waves-effect waves-teal" href="/Back/Categorias">Catalogo de categorias<i class="material-icons left">list</i>
+          <li><a class="waves-effect waves-teal" href="/Back/Tamaños">Tamaños<i class="material-icons left">view_quilt</i></a></li>
+         <li><a class="waves-effect waves-teal" href="/Back/Productos">Catalogo de productos<i class="material-icons left">local_cafe</i></a></li>
+          <li><a class="waves-effect waves-teal" href="/Back/Venta">Ventas realizadas<i class="material-icons left">attach_money</i></a></li>
+        <li><a class="waves-effect waves-teal" href="/Back/Usuarios">Lista de usuarios<i class="material-icons left">supervisor_account</i></a></li>
         
-        <li><a class="waves-effect waves-teal" href="/Back/Comanda">Lista de comandas<i class="material-icons right">chevron_right</i></a></li>
-        <li><a class="waves-effect waves-teal" href="/Back/Compra">Punto de venta<i class="material-icons right">chevron_right</i></a></li>
-        <li><a class="waves-effect waves-teal" href="/Back/Orden">Ordenes<i class="material-icons right">chevron_right</i></a></li>
-        <li><a class="waves-effect waves-teal" href="/Back/Mesas">Catalogo de mesas <i class="material-icons right">chevron_right</i></a></li>
-        <li><a class="waves-effect waves-teal" href="/Back/Categorias">Catalogo de categorias<i class="material-icons right">chevron_right</i>
-          <li><a class="waves-effect waves-teal" href="/Back/Tamaños">Tamaños<i class="material-icons right">chevron_right</i></a></li>
-         <li><a class="waves-effect waves-teal" href="/Back/Productos">Catalogo de productos<i class="material-icons right">chevron_right</i></a></li>
-          <li><a class="waves-effect waves-teal" href="/Back/Venta">Ventas realizadas<i class="material-icons right">chevron_right</i></a></li>
-        <li><a class="waves-effect waves-teal" href="/Back/Usuarios">Lista de usuarios<i class="material-icons right">chevron_right</i></a></li>
-         <li><a class="waves-effect waves-teal" href="/Back/Graficas">Graficas<i class="material-icons right">chevron_right</i></a></li>
 
       </ul>
     </div>

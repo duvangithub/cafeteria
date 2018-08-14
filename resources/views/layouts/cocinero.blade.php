@@ -32,7 +32,7 @@
              </form>
         <li><div class="divider"></div></li>
         <li><a class="subheader">Menu</a></li>
-        <li><a class="waves-effect waves-teal" href="/Back/Comanda">Lista de comandas<i class="material-icons right">chevron_right</i></a></li>
+        <li><a class="waves-effect waves-teal" href="/Back/Comanda">Lista de comandas<i class="material-icons left">confirmation_number</i></a></li>
       </ul>
     </div>
   </nav>
