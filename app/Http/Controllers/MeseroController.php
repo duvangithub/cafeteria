@@ -63,7 +63,10 @@ class MeseroController extends Controller
         ->where('Eliminar','=','1')
         ->where('idMesas','!=','6')
         ->get(); 
-        $categorias=Categorias::all();
+        $categorias=DB::table('categorias')
+        ->where('Estado','=','1')
+        ->where('Eliminar','=','1')
+        ->get();
         $folio=DB::table('orden')->max('idOrden');
     	return view("Back.Mesero.create",["mesas"=>$mesas,"folio"=>$folio,"categorias"=>$categorias]);
 

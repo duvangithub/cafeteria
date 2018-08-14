@@ -56,7 +56,10 @@ class CajaController extends Controller
      public function create(){
     	
     	
-        $categorias=Categorias::all();
+        $categorias=DB::table('categorias')
+        ->where('Estado','=','1')
+        ->where('Eliminar','=','1')
+        ->get();
         $folio=DB::table('orden')->max('idOrden');
     	return view("Back.PuntoVenta.create",["folio"=>$folio,"categorias"=>$categorias]);
 

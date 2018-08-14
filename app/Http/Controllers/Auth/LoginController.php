@@ -29,7 +29,7 @@ class LoginController extends Controller
     
     public function authenticated($request , $user){
     if($user->tipo=='1'){
-       return Redirect::to('Back/Venta');
+       return Redirect::to('Back/Graficas');
     }elseif($user->tipo=='2'){
         return Redirect::to('Back/Mesero');
     }elseif($user->tipo=='3'){

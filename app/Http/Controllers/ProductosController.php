@@ -49,6 +49,7 @@ class ProductosController extends Controller
     public function byCate($id){
 
        return Productos::where('idCategorias', $id)
+       ->where('Estado','=','1')
        ->where('Eliminar','=','1')
        ->get();
 
@@ -56,6 +57,7 @@ class ProductosController extends Controller
 
     public function byPro($id){
        return Productos::where('idProductos', $id)
+       ->where('Estado','=','1')
        ->where('Eliminar','=','1')
        ->get();
     }
@@ -159,7 +161,7 @@ class ProductosController extends Controller
                            ->select(DB::raw('count(o.idMesas) as solicitado'),'m.Descripcion')
                            ->join('mesas as m','o.idMesas','=','m.idMesas')
                            ->whereBetween('Fecha',[date('Y-m-d').' 00:00:00',date('Y-m-d').' 23:59:59'])
-                           ->groupBy('o.idMesas')
+                           ->groupBy('o.idMesas','m.Descripcion')
                            ->get();
        return $ventas_diarias;
    }

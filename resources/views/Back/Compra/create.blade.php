@@ -24,10 +24,11 @@
 
 
 <div class="card-tabs">
-      <ul class="tabs tabs-fixed-width">
-        <li class="tab"><a class="active" href="#test1">Orden</a></li>
-        <li class="tab"><a href="#test2">Elegir productos</a></li>
-        <li class="tab"><a href="#test3">Venta</a></li>
+      <ul class="tabs tabs-fixed-width ">
+
+        <li class="tab "><a class=" active brown-text" href="#test1">Orden</a></li>
+        <li class="tab"><a class="brown-text" href="#test2">Elegir productos</a></li>
+        <li class="tab"><a class="brown-text" href="#test3">Venta</a></li>
       </ul>
     </div>
 
@@ -225,15 +226,18 @@
        evaluar();
        $('#detalles').append(fila);
        Total();
+        Materialize.toast('Se agrego el producto correctamente', 3000,'#66bb6a green lighten-1')
         }else{
-      alert("No hay suficientes productos en el stock")
+      Materialize.toast('No hay suficientes productos en el stock', 4000,'#e53935 red darken-1')
+      // alert("No hay suficientes productos en el stock")
       limpiar();
 
      }
 
     }else
     {
-      alert("Error al ingresar el detalle del ingreso, revise los datos del articulo")
+       Materialize.toast('Error al ingresar el detalle del ingreso, revise los datos de la orden', 4000,'#e53935 red darken-1')
+      // alert("Error al ingresar el detalle del ingreso, revise los datos del articulo")
     }
 
   }
@@ -246,7 +250,9 @@
    
      if (na =="" || can =="") {
 
-      alert("Hacen falta datos, revise el formulario por favor");
+       Materialize.toast('Hacen falta datos, revise el formulario por favor', 4000,'#e53935 red darken-1')
+
+      // alert("Hacen falta datos, revise el formulario por favor");
 
      }
 
