@@ -42,6 +42,15 @@
   </div>
 </div>
 
+<div class="card darken-1">
+  <div class="card-content">
+    <button class="btn" onclick="totalVentasCosto()">Total costo de ventas</button>
+    <div class="row">
+       <canvas id="totalVentasCosto" width="600" height="300"></canvas>
+    </div>
+  </div>
+</div>
+
 </div>
     </div>
 @else
@@ -145,6 +154,44 @@
             type: 'polarArea',
             data: data,
             options: ""
+      });
+
+    });
+  }
+
+   function totalVentasCosto(){
+    $.get('/api/Back/TotalVentas', function (response) {
+      var labels = [];
+      var data = [];
+      var background = [];
+      for(var i=0; i<response.length;i++){
+        labels.push(response[i].Fecha);
+        data.push(parseFloat(response[i].venta));
+        background.push(random_rgba());
+      }
+
+      var ctx = document.getElementById('totalVentasCosto');
+
+      var data = {
+        labels : labels,
+        datasets: [{
+          label: 'Total de ventas',
+          data: data,
+          backgroundColor: background,
+
+        }]
+      }
+
+      var myBarChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+              elements:{
+                line: {
+                  tension:0
+                }
+              }
+            }
       });
 
     });

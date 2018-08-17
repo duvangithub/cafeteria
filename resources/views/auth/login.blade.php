@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="row">
+</div>
 
 <div class="container">
 
@@ -64,9 +65,7 @@
                                     {{ __('Entrar') }}
                                 </button>
 
-                                <a class="btn #29b6f6 light-blue lighten-1" href="{{ route('password.request') }}">
-                                    {{ __('Olvidaste tu contraseña') }}
-                                </a>
+                                
                             </div>
                         </div>
                     </form>
@@ -74,7 +73,7 @@
             </div>
         </div>
             
-     </div>
+     
     
 </div>
 

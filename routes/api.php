@@ -15,3 +15,4 @@ Route::get('/Back/Orden/{id}/Orden', 'BOrdenController@byOrden');
 Route::get('/Back/ProductosVendidos/', 'ProductosController@getProductosVendidos');
 Route::get('/Back/VentasDiarias/', 'ProductosController@getVentasDiarias');
 Route::get('/Back/MesasSolicitadas/', 'ProductosController@getMesasSolicitadas');
+Route::get('/Back/TotalVentas/', 'ProductosController@getTotalVentasDiarias');

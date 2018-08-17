@@ -165,4 +165,14 @@ class ProductosController extends Controller
                            ->get();
        return $ventas_diarias;
    }
+
+       public function getTotalVentasDiarias(){
+       $total_ventas_diarias = DB::table('venta as v')
+                           ->select(DB::raw('sum(v.Total) as venta'),DB::raw('DATE_FORMAT(o.Fecha,"%d-%m-%Y") as Fecha'))
+                           ->join('orden as o','v.idOrden','=','o.idOrden')
+                           ->groupBy(DB::raw('DATE_FORMAT(o.Fecha,"%d-%m-%Y")'))
+                           ->get();
+
+       return $total_ventas_diarias;
+   }
 }

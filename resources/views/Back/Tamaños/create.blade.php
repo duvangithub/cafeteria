@@ -36,7 +36,7 @@
 	 Guardar
     <i class="material-icons right">send</i>
 	</button>
-     <a class="waves-effect waves-light btn red" href="/Back/Tamaño"><i class="material-icons right">clear</i>Cancelar</a>
+     <a class="waves-effect waves-light btn red" href="/Back/Tamaños"><i class="material-icons right">clear</i>Cancelar</a>
   </div>
   </div>
    </div>

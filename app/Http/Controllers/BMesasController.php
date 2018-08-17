@@ -25,7 +25,7 @@ class BMesasController extends Controller
     		->where('m.Descripcion','LIKE','%'.$query.'%')
     		->where('m.Eliminar','=','1')
     		->orderBy('idMesas', 'DESC')
-    		->paginate(4);
+    		->paginate(7);
     		return view('Back.Mesas.index',["mesas"=>$mesas,"SearchText"=>$query]);
     	}
 
